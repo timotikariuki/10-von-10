@@ -8,4 +8,8 @@ const images = {
   logo_black: require('./assets/logo_black.png'),
 };
 
-export default {images};
+const colors = {
+  dark_blue: '#eff',
+};
+
+export default {images, colors};
