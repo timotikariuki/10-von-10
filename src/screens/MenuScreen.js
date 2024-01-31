@@ -2,22 +2,29 @@ import React from 'react';
 import {StyleSheet, View, Image, ImageBackground} from 'react-native';
 import assetsPaths from '../assetsPaths';
 import CardButton from '../components/CardButton';
-import MainButton from '../components/QuoteButton';
+import GroupButton from '../components/GroupButton';
+import HelpButton from '../components/HelpButton';
 
 function MenuScreen({navigation}) {
   const handlePress = category => {
     navigation.navigate('quote', {category});
   };
 
+  const handleHelp = () => {
+    navigation.navigate('help');
+  };
+
+
   return (
     <View style={styles.container}>
       <ImageBackground
         style={styles.background_container}
-        source={assetsPaths.images.background_1}></ImageBackground>
+        source={assetsPaths.images.background_1} />
       <View style={styles.logo_container}>
         <View  style={styles.logo_ring}>
           <Image style={styles.logo} source={assetsPaths.images.logo_black} />
         </View>
+        <HelpButton onPress={handleHelp} style={styles.help_button}/>
       </View>
       <View style={styles.card_container}>
         {[
@@ -38,12 +45,12 @@ function MenuScreen({navigation}) {
       </View>
 
       <View style={styles.button_group}>
-        <MainButton
+        <GroupButton
           style={styles.group_botton}
           title="Zufallsmodus"
           onPress={() => {
             handlePress(Math.floor(Math.random() * 4));
-          }}></MainButton>
+          }}></GroupButton>
       </View>
     </View>
   );
@@ -59,6 +66,11 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     backgroundColor: assetsPaths.colors.white,
     elevation: 5,
+  },
+  help_button:{
+    position: 'absolute',
+    top: 0,
+    right: 20,
   },
   container: {
     flex: 1,

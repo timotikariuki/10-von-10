@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, ImageBackground, Text} from 'react-native';
 import assetsPaths from '../assetsPaths';
 import db from '../db';
-import QuoteButton from '../components/QuoteButton';
+import GroupButton from '../components/GroupButton';
 
 function QuoteScreen({navigation, route}) {
   const targetCategory = route.params.category;
@@ -65,20 +65,23 @@ function QuoteScreen({navigation, route}) {
       </ImageBackground>
 
       <View style={styles.button_group}>
-        <QuoteButton
+        <GroupButton
           style={styles.group_botton}
-          title="BACK"
+          title="RETURN"
           onPress={() => {
             navigation.goBack();
-          }}></QuoteButton>
-        <QuoteButton
-          style={styles.group_botton}
-          title="NEXT"
-          onPress={handleNext}></QuoteButton>
-        <QuoteButton
+          }}
+        />
+        <GroupButton
           style={styles.group_botton}
           title="RESET"
-          onPress={handleReset}></QuoteButton>
+          onPress={handleReset}
+        />
+        <GroupButton
+          style={styles.group_botton}
+          title="NEXT"
+          onPress={handleNext}
+        />
       </View>
     </View>
   );
@@ -101,11 +104,11 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#00303f',
-    paddingHorizontal: 24,
-    fontSize: 24,
+    paddingHorizontal: 48,
+    fontSize: 32,
     fontWeight: 'bold',
     textAlign: 'center',
-    lineHeight: 36,
+    lineHeight: 48,
   },
   description: {
     color: '#5d5f5f',
@@ -122,6 +125,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     flexWrap: 'wrap',
+    marginBottom: 36,
   },
   group_botton: {
     flexBasis: '33%',

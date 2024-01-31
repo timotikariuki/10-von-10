@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   pressable: {
     borderRadius: 16,
     overflow: 'hidden',
-    elevation: 5
+    elevation: 5,
   },
   background: {
     paddingVertical: 48,

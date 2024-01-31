@@ -10,6 +10,8 @@ const images = {
   background_1: require('./assets/header_backgroud.png'),
   background_2: require('./assets/main_background.png'),
 
+  tri_questions: require('./assets/tri_questions.png'),
+
   category_logos: [
     require('./assets/handshake.png'),
     require('./assets/laughing_with_tears_and_pointing.png'),
@@ -21,7 +23,14 @@ const images = {
 const colors = {
   bright_blue : '#257CFF',
   dark: '#1D1E25',
-  white: '#fff'
+  white: '#fff',
+  orange: '#ED8F12',
+  orange_2: '#FFB611',
 };
 
-export default {images, colors};
+
+const help = {
+  
+}
+
+export default {images, colors, help};

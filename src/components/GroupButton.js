@@ -2,10 +2,10 @@ import React from 'react';
 import {TouchableOpacity, View, StyleSheet, Text} from 'react-native';
 import assetsPaths from '../assetsPaths';
 
-const QuoteButton = ({onPress, title, style: container_style}) => {
+const GroupButton = ({onPress, title, color = "blue", style: container_style, disabled=false}) => {
   return (
     <View style={container_style}>
-      <TouchableOpacity onPress={onPress} style={styles.pressable}>
+      <TouchableOpacity onPress={onPress} style={[styles.pressable, color === "orange" && styles.bg_orange, disabled && styles.disabled]} disabled={disabled} >
         <Text style={styles.text}>{title}</Text>
       </TouchableOpacity>
     </View>
@@ -27,6 +27,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  bg_orange:{
+    backgroundColor: assetsPaths.colors.orange
+  },
+  disabled:{
+    backgroundColor: 'gray'
+  }
 });
 
-export default QuoteButton;
+export default GroupButton;
