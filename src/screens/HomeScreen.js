@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import assetsPaths from '../assetsPaths';
 
-function HomeScreen({navigation}) {
+function MenuScreen({navigation}) {
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -20,7 +20,6 @@ function HomeScreen({navigation}) {
             style={styles.pressable}
             onPress={() => {
               navigation.navigate('menu');
-              console.log('first');
             }}>
             <Image
               source={assetsPaths.images.logo_black}
@@ -49,12 +48,12 @@ const styles = StyleSheet.create({
     paddingBottom: 65,
   },
   text: {
-    color: 'black',
-    width: 260,
+    color: '#00303f',
+    paddingHorizontal:24,
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 36,
   },
 });
-export default HomeScreen;
+export default MenuScreen;

@@ -1,23 +1,85 @@
-import React from 'react';
-import {StyleSheet, View, Image} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, View, ImageBackground, Text} from 'react-native';
 import assetsPaths from '../assetsPaths';
+import db from '../db';
+import QuoteButton from '../components/QuoteButton';
 
-function MenuScreen({navigation, route}) {
-  const category = route.params.category - 1;
+function QuoteScreen({navigation, route}) {
+  const targetCategory = route.params.category;
+  const [quoteItem, setQuoteItem] = useState('');
+  const [quoteStatus, setQuoteStatus] = useState({
+    total: 0,
+    isRead: 0,
+  });
+
+  const handleNext = () => {
+    // tick selected item as read
+    selectNexItem();
+  };
+
+  const handleReset = () => {
+    // set all items of the category as unread
+    selectNexItem();
+  };
+
+  const selectNexItem = () => {
+    const category_items = db.filter(item => item.category === targetCategory);
+    const isunRead = category_items.filter(item => !item.isRead);
+
+    setQuoteStatus({
+      total: category_items.length,
+      isRead: category_items.length - isunRead.length,
+    });
+
+    const randomIndex = Math.floor(Math.random() * isunRead.length);
+    setQuoteItem(isunRead[randomIndex]);
+  };
+
+  useEffect(() => {
+    selectNexItem();
+  }, [targetCategory]);
 
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.background}
+      <ImageBackground
+        style={styles.background_container}
         source={
           [
             assetsPaths.images.card_green,
             assetsPaths.images.card_blue,
             assetsPaths.images.card_gray,
             assetsPaths.images.card_pink,
-          ][category]
-        }></Image>
-      <Text style={styles.text}>{title}</Text>
+          ][targetCategory]
+        }>
+        <View
+          style={styles.content_container}
+          onPress={() => {
+            navigation.navigate('menu');
+          }}>
+          <Text style={styles.text}>{quoteItem.content}</Text>
+          <Text
+            style={
+              styles.description
+            }>{`vollendet ${quoteStatus.isRead}/${quoteStatus.total}`}</Text>
+        </View>
+      </ImageBackground>
+
+      <View style={styles.button_group}>
+        <QuoteButton
+          style={styles.group_botton}
+          title="BACK"
+          onPress={() => {
+            navigation.goBack();
+          }}></QuoteButton>
+        <QuoteButton
+          style={styles.group_botton}
+          title="NEXT"
+          onPress={handleNext}></QuoteButton>
+        <QuoteButton
+          style={styles.group_botton}
+          title="RESET"
+          onPress={handleReset}></QuoteButton>
+      </View>
     </View>
   );
 }
@@ -25,22 +87,47 @@ function MenuScreen({navigation, route}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: assetsPaths.colors.dark_blue,
-    paddingVertical: 32,
   },
-  background: {
-    padding: 36,
-    margin:2,
-    borderRadius: 12,
-    overflow: 'hidden',
+  background_container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 24,
+  },
+  content_container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
-    color: 'black',
-    width: 260,
+    color: '#00303f',
+    paddingHorizontal: 24,
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 36,
   },
+  description: {
+    color: '#5d5f5f',
+    paddingHorizontal: 24,
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    lineHeight: 36,
+    paddingTop: 18,
+  },
+  button_group: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+  },
+  group_botton: {
+    flexBasis: '33%',
+    marginBottom: 36,
+    paddingHorizontal: 6,
+  },
 });
-export default MenuScreen;
+
+export default QuoteScreen;
