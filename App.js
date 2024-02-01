@@ -14,8 +14,6 @@ import HelpScreen from './src/screens/HelpScreen';
 import MenuScreen from './src/screens/MenuScreen';
 import QuoteScreen from './src/screens/QuoteScreen';
 
-import LogoTitle from './src/components/LogoTitle';
-
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -30,7 +28,7 @@ const App = () => {
         <Stack.Screen
           name="quote"
           component={QuoteScreen}
-          options={{header: props => <LogoTitle {...props} />}}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name="help"

@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     overflow: 'hidden',
     backgroundColor: assetsPaths.colors.bright_blue,
-    paddingHorizontal: 32,
     paddingVertical: 10,
   },
   text: {

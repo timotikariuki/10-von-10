@@ -3,12 +3,14 @@ import {
   Image,
   StyleSheet,
   View,
+  ScrollView,
   Text,
   ImageBackground,
   PanResponder,
 } from 'react-native';
 import GroupButton from '../components/GroupButton';
 import assetsPaths from '../assetsPaths';
+import TransparentButton from '../components/TransparentButton';
 
 function HelpScreen({navigation}) {
   const [selected, setSelected] = useState(0);
@@ -158,7 +160,8 @@ function HelpScreen({navigation}) {
       <ImageBackground
         style={styles.container}
         source={assetsPaths.images.card_white}>
-        <View style={styles.scroll_view}>
+        <TransparentButton onPress={()=>{navigation.navigate('menu')}} style={styles.return_button} color='dark' content="<"/>
+        <ScrollView style={styles.scroll_view}>
           <View style={styles.scroll_content}>
             {
               [
@@ -170,7 +173,7 @@ function HelpScreen({navigation}) {
               ][selected]
             }
           </View>
-        </View>
+        </ScrollView>
       </ImageBackground>
 
       <View style={styles.button_group}>
@@ -179,20 +182,15 @@ function HelpScreen({navigation}) {
           title="<< ZURÜCK"
           onPress={handleBack}
           disabled={selected === 0}
-          color="orange" />
-        <GroupButton
-          style={styles.group_botton}
-          title="ZURÜCKKEHREN"
-          onPress={() => {
-            navigation.goBack();
-          }}
-          color="orange" />
+          color="orange"
+        />
         <GroupButton
           style={styles.group_botton}
           title="NÄCHSTE >>"
           onPress={handleNext}
           disabled={selected === 4}
-          color="orange" />
+          color="orange"
+        />
       </View>
     </View>
   );
@@ -203,12 +201,17 @@ const styles = StyleSheet.create({
     height: 320,
     resizeMode: 'contain',
   },
+  return_button: {
+    position: 'absolute',
+    top: 32,
+    left: 20,
+  },
   container: {
     flex: 1,
   },
   scroll_view: {
     marginTop: 120,
-    marginBottom: 60,
+    marginBottom: 120,
   },
   scroll_content: {
     alignItems: 'center',
@@ -245,14 +248,14 @@ const styles = StyleSheet.create({
   section3_container: {
     width: '100%',
     paddingHorizontal: 48,
-    paddingBottom: 160,
+    paddingBottom: 200,
     position: 'relative',
     marginTop: 160,
   },
   section3_title: {
     maxWidth: 360,
     color: '#00303f',
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
     lineHeight: 48,
   },
@@ -262,6 +265,7 @@ const styles = StyleSheet.create({
     right: 24,
     height: 280,
     resizeMode: 'contain',
+    opacity: 0.7,
   },
   section4_text: {
     color: '#00303f',
@@ -282,7 +286,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   group_botton: {
-    flexBasis: '33%',
+    flexBasis: '30%',
+    minWidth: 150,
     marginBottom: 36,
     paddingHorizontal: 6,
   },

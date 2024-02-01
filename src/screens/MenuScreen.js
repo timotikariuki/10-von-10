@@ -1,9 +1,15 @@
 import React from 'react';
-import {StyleSheet, View, Image, ImageBackground} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Image,
+  ImageBackground,
+  StatusBar,
+} from 'react-native';
 import assetsPaths from '../assetsPaths';
 import CardButton from '../components/CardButton';
 import GroupButton from '../components/GroupButton';
-import HelpButton from '../components/HelpButton';
+import TransparentButton from '../components/TransparentButton';
 
 function MenuScreen({navigation}) {
   const handlePress = category => {
@@ -14,17 +20,22 @@ function MenuScreen({navigation}) {
     navigation.navigate('help');
   };
 
-
   return (
     <View style={styles.container}>
+      <StatusBar
+        translucent
+        backgroundColor="transparent"
+        barStyle="dark-content"
+      />
       <ImageBackground
         style={styles.background_container}
-        source={assetsPaths.images.background_1} />
+        source={assetsPaths.images.background_1}
+      />
       <View style={styles.logo_container}>
-        <View  style={styles.logo_ring}>
+        <View style={styles.logo_ring}>
           <Image style={styles.logo} source={assetsPaths.images.logo_black} />
         </View>
-        <HelpButton onPress={handleHelp} style={styles.help_button}/>
+        <TransparentButton onPress={handleHelp} style={styles.help_button} />
       </View>
       <View style={styles.card_container}>
         {[
@@ -67,7 +78,7 @@ const styles = StyleSheet.create({
     backgroundColor: assetsPaths.colors.white,
     elevation: 5,
   },
-  help_button:{
+  help_button: {
     position: 'absolute',
     top: 0,
     right: 20,
@@ -83,7 +94,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 24,
   },
-  logo_ring:{
+  logo_ring: {
     width: 120,
     height: 120,
     borderRadius: 60,
