@@ -1,17 +1,23 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   StyleSheet,
   View,
   Image,
   ImageBackground,
   StatusBar,
+  Text,
 } from 'react-native';
 import assetsPaths from '../assetsPaths';
 import CardButton from '../components/CardButton';
 import GroupButton from '../components/GroupButton';
 import TransparentButton from '../components/TransparentButton';
 
+import {QuoteContext} from '../database/db.context';
+
 function MenuScreen({navigation}) {
+  const {selected, players, oldQuoteItem, countIsRead} =
+    useContext(QuoteContext);
+
   const handlePress = category => {
     navigation.navigate('quote', {category});
   };
@@ -51,17 +57,48 @@ function MenuScreen({navigation}) {
             }}
             backgroundImage={image}
             category={idx}
+            isLeft={idx % 2}
           />
         ))}
+
+        <View style={styles.paragraph}>
+          <Text style={styles.description}>
+            Nächste Frage von{' '}
+            <Text style={[styles.bold]}>{players[selected]?.name}</Text>
+          </Text>
+          <Text style={styles.description}>
+            <Text style={[styles.bold]}>{countIsRead}</Text> Fragen gespielt
+          </Text>
+        </View>
       </View>
 
       <View style={styles.button_group}>
         <GroupButton
           style={styles.group_botton}
-          title="Zufallsmodus"
+          title="vorherige Frage"
+          disabled={!oldQuoteItem}
+          onPress={() => {
+            navigation.navigate('old_quote', {oldQuoteItem});
+          }}
+        />
+        <GroupButton
+          style={styles.group_botton}
+          title="Zufallskategorie"
           onPress={() => {
             handlePress(Math.floor(Math.random() * 4));
-          }}></GroupButton>
+          }}
+        />
+      </View>
+      <View style={styles.button_group}>
+        <GroupButton
+          style={styles.group_botton}
+          title="Eigene Fragen einsenden"
+          color="transparent"
+          size="lg"
+          onPress={() => {
+            navigation.navigate('new_quote');
+          }}
+        />
       </View>
     </View>
   );
@@ -99,12 +136,14 @@ const styles = StyleSheet.create({
     height: 120,
     borderRadius: 60,
     overflow: 'hidden',
-    backgroundColor: assetsPaths.colors.white,
-    elevation: 5,
+    backgroundColor: 'transparent',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   logo: {
-    width: 120,
-    height: 120,
+    width: 110,
+    height: 110,
     borderRadius: 60,
   },
   card_container: {
@@ -122,8 +161,24 @@ const styles = StyleSheet.create({
   },
   group_botton: {
     flexBasis: '50%',
+    maxWidth: 150,
     marginBottom: 36,
     paddingHorizontal: 6,
+  },
+  paragraph: {
+    paddingTop: 16,
+    paddingHorizontal: 24,
+  },
+  description: {
+    color: '#5d5f5f',
+    fontSize: 16,
+    lineHeight: 32,
+  },
+  bright_blue: {
+    color: assetsPaths.colors.bright_blue,
+  },
+  bold: {
+    fontWeight: 'bold',
   },
 });
 export default MenuScreen;

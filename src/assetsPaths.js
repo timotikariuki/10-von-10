@@ -28,9 +28,4 @@ const colors = {
   orange_2: '#FFB611',
 };
 
-
-const help = {
-  
-}
-
-export default {images, colors, help};
+export default {images, colors};

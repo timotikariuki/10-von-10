@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   Image,
   StyleSheet,
@@ -6,45 +6,83 @@ import {
   Text,
   ImageBackground,
   PanResponder,
+  Alert,
 } from 'react-native';
-import db from '../db';
 
 import GroupButton from '../components/GroupButton';
 import assetsPaths from '../assetsPaths';
 import TransparentButton from '../components/TransparentButton';
 
+import {QuoteContext} from '../database/db.context';
+
 function QuoteScreen({navigation, route}) {
   const targetCategory = route.params.category;
-  const [quoteItem, setQuoteItem] = useState('');
+  const oldQuoteItem = route.params?.oldQuoteItem || false;
+
+  const {
+    selectOneRandomly,
+    resetAllUnreadByCategory,
+    setReadQuote,
+    selected,
+    setSelected,
+    players,
+  } = useContext(QuoteContext);
+
+  const [quoteItem, setQuoteItem] = useState(undefined);
   const [quoteStatus, setQuoteStatus] = useState({
     total: 0,
     isRead: 0,
   });
 
+  const callSelectOne = category => {
+    selectOneRandomly({category}, ({total, isRead, selItem}) => {
+      setSelected(selected === 0 ? 1 : 0);
+      setQuoteStatus({total, isRead});
+      setQuoteItem(selItem);
+
+      if (total <= isRead)
+        Alert.alert(
+          'Bekanntmachung',
+          'Vollendet! Markieren Sie bitte alle als ungelesen',
+          [
+            {text: 'Heim', onPress: handleBack},
+            {
+              text: 'Zurücksetzen',
+              onPress: () => {
+                resetAllUnreadByCategory({category}, () => {
+                  Alert.alert(
+                    'Erfolg',
+                    'Erfolgreich zurückgesetzt! Genießen Sie es',
+                    [
+                      {
+                        text: 'Stornieren',
+                        onPress: () => {
+                          callSelectOne(targetCategory);
+                        },
+                      },
+                    ],
+                  );
+                });
+              },
+            },
+          ],
+        );
+    });
+  };
+
   const handleNext = () => {
     // tick selected item as read
-    selectNexItem();
+    setReadQuote({quoteItem}, () => {
+      callSelectOne(targetCategory);
+    });
   };
 
   const handleBack = () => {
     navigation.goBack();
   };
 
-  const selectNexItem = () => {
-    const category_items = db.filter(item => item.category === targetCategory);
-    const isunRead = category_items.filter(item => !item.isRead);
-
-    setQuoteStatus({
-      total: category_items.length,
-      isRead: category_items.length - isunRead.length,
-    });
-
-    const randomIndex = Math.floor(Math.random() * isunRead.length);
-    setQuoteItem(isunRead[randomIndex]);
-  };
-
   useEffect(() => {
-    selectNexItem();
+    callSelectOne(targetCategory);
   }, [targetCategory]);
 
   const panResponder = PanResponder.create({
@@ -77,7 +115,6 @@ function QuoteScreen({navigation, route}) {
             navigation.navigate('menu');
           }}
           style={styles.return_button}
-          color="dark"
           content="<"
         />
         <View style={styles.scroll_view}>
@@ -91,21 +128,28 @@ function QuoteScreen({navigation, route}) {
               style={styles.section1_logo}
             />
 
-            <Text style={styles.text}>{quoteItem.content}</Text>
+            <Text style={styles.text}>{quoteItem?.content}</Text>
             <Text
-              style={
-                styles.description
-              }>{`vollendet ${quoteStatus.isRead}/${quoteStatus.total}`}</Text>
+              style={[
+                styles.description,
+                quoteStatus.total === quoteStatus.isRead && styles.disabled,
+              ]}>
+              {`${players[selected]?.name}'s Frage`}
+            </Text>
+
+            <Text>
+              {`(vollendet ${quoteStatus.isRead}/${quoteStatus.total})`}
+            </Text>
           </View>
         </View>
       </ImageBackground>
 
-      <View style={styles.button_group}>
+      <View style={[styles.button_group, oldQuoteItem && styles.disabled]}>
         <GroupButton
           style={styles.group_botton}
           title="zufällig"
           onPress={handleNext}
-          // disabled={selected === 4}
+          disabled={quoteStatus.total === quoteStatus.isRead}
         />
       </View>
     </View>
@@ -117,12 +161,13 @@ const styles = StyleSheet.create({
     height: 320,
     height: 240,
     resizeMode: 'contain',
-    marginBottom: 48
+    marginBottom: 48,
   },
   return_button: {
     position: 'absolute',
     top: 32,
     left: 20,
+    backgroundColor: '#ffffff66',
   },
   container: {
     flex: 1,
@@ -137,12 +182,12 @@ const styles = StyleSheet.create({
   text: {
     color: '#00303f',
     paddingHorizontal: 48,
-    width: "100%",
+    width: '100%',
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 48,
-    minHeight: 120
+    minHeight: 120,
   },
   description: {
     color: '#5d5f5f',
@@ -168,6 +213,9 @@ const styles = StyleSheet.create({
     minWidth: 150,
     marginBottom: 36,
     paddingHorizontal: 6,
+  },
+  disabled: {
+    display: 'none',
   },
 });
 export default QuoteScreen;

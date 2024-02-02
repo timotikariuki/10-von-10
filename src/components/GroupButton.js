@@ -2,11 +2,11 @@ import React from 'react';
 import {TouchableOpacity, View, StyleSheet, Text} from 'react-native';
 import assetsPaths from '../assetsPaths';
 
-const GroupButton = ({onPress, title, color = "blue", style: container_style, disabled=false}) => {
+const GroupButton = ({onPress, title, color = "blue",size="sm", style: container_style, disabled=false}) => {
   return (
-    <View style={container_style}>
-      <TouchableOpacity onPress={onPress} style={[styles.pressable, color === "orange" && styles.bg_orange, disabled && styles.disabled]} disabled={disabled} >
-        <Text style={styles.text}>{title}</Text>
+    <View style={[container_style, size === "sm" && styles.sm, size === "lg" && styles.lg]}>
+      <TouchableOpacity onPress={onPress} style={[styles.pressable, color === "orange" && styles.bg_orange, color === "transparent" && styles.bg_transparent, disabled && styles.disabled]} disabled={disabled} >
+        <Text style={[styles.text, color === "transparent" && styles.bg_transparent]}>{title}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -31,6 +31,15 @@ const styles = StyleSheet.create({
   },
   disabled:{
     backgroundColor: 'gray'
+  }
+  ,lg:{
+    paddingHorizontal: 12,
+    maxWidth: 240,
+  },sm:{
+  },
+  bg_transparent:{
+    backgroundColor: 'transparent',
+    color: assetsPaths.colors.bright_blue,
   }
 });
 
