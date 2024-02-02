@@ -163,10 +163,10 @@ const QuoteProvider = ({children}) => {
         `DROP TABLE IF EXISTS ${tableName};`,
         [],
         () => {
-          Alert.alert(`Table '${tableName}' deleted successfully.`);
+          Alert.alert(`Tabelle '${tableName}' wurde erfolgreich gelöscht.`);
         },
         () => {
-          Alert.alert('Fehler', `Error deleting table '${tableName}'`);
+          Alert.alert('Fehler', `Fehler beim Löschen der Tabelle'${tableName}'`);
         },
       );
     });

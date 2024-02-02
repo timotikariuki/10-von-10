@@ -29,7 +29,7 @@ function NewQuoteScreen({navigation}) {
       Alert.alert('Bekanntmachung', 'Bitte verwenden Sie einen anderen Namen!');
     else
       updateUserName(_players, () => {
-        Alert.alert('Erfolg', 'Players name changed successfully!');
+        Alert.alert('Erfolg', 'Spielername erfolgreich geändert!');
       });
   };
 
@@ -38,6 +38,9 @@ function NewQuoteScreen({navigation}) {
   };
 
   const handleSaveQuote = () => {
+    if(Number.isNaN === parseInt(newQuote.category)){
+      Alert.alert('Bekanntmachung', 'Neues Angebot erfolgreich gespeichert!')
+    }else 
     addQuote(newQuote, () => {
       Alert.alert('Erfolg', 'Neues Angebot erfolgreich gespeichert!', [
         {
@@ -83,7 +86,7 @@ function NewQuoteScreen({navigation}) {
               <TextInput
                 style={styles.control}
                 onChangeText={text => {
-                  setNewQuote({...newQuote, category: parseInt(text)});
+                  setNewQuote({...newQuote, category: text});
                 }}
                 value={newQuote?.category.toString() || ''}></TextInput>
             </View>
@@ -169,8 +172,8 @@ function NewQuoteScreen({navigation}) {
 
 const styles = StyleSheet.create({
   background_container: {
+    flex:1,
     width: '100%',
-    height: 140,
     resizeMode: 'cover',
     backgroundColor: assetsPaths.colors.white,
     elevation: 5,
@@ -178,10 +181,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingVertical: 18
   },
   section1_logo: {
-    height: 80,
-    resizeMode: 'contain',
+    height: "100%",
+    resizeMode: 'contain'
   },
   return_button: {
     position: 'absolute',
