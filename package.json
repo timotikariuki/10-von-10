@@ -7,7 +7,10 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build:android": "react-native run-android --variant=release",
+    "build:ios": "react-native run-ios --configuration Release",
+    "key-sign":"keytool -genkeypair -v -keystore my-release-key.keystore -keyalg RSA -keysize 2048 -validity 10000 -alias my-key-alias"
   },
   "dependencies": {
     "@react-navigation/native": "6.1.9",

@@ -6,7 +6,7 @@ const TransparentButton = ({
   onPress,
   color = 'light',
   style: container_style,
-  content = '?',
+  content = 'Spielanleitung',
 }) => {
   return (
     <View style={container_style}>

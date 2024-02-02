@@ -158,8 +158,7 @@ function QuoteScreen({navigation, route}) {
 
 const styles = StyleSheet.create({
   section1_logo: {
-    height: 320,
-    height: 240,
+    height: 180,
     resizeMode: 'contain',
     marginBottom: 48,
   },
@@ -181,7 +180,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#00303f',
-    paddingHorizontal: 48,
+    paddingHorizontal: 24,
     width: '100%',
     fontSize: 24,
     fontWeight: 'bold',

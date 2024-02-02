@@ -43,6 +43,7 @@ function MenuScreen({navigation}) {
         </View>
         <TransparentButton onPress={handleHelp} style={styles.help_button} />
       </View>
+
       <View style={styles.card_container}>
         {[
           assetsPaths.images.card_green,
@@ -75,7 +76,7 @@ function MenuScreen({navigation}) {
       <View style={styles.button_group}>
         <GroupButton
           style={styles.group_botton}
-          title="vorherige Frage"
+          title="letzte Frage ansehen"
           disabled={!oldQuoteItem}
           onPress={() => {
             navigation.navigate('old_quote', {oldQuoteItem});
@@ -89,10 +90,10 @@ function MenuScreen({navigation}) {
           }}
         />
       </View>
-      <View style={styles.button_group}>
+      <View style={[styles.button_group, styles.last_group_botton]}>
         <GroupButton
           style={styles.group_botton}
-          title="Eigene Fragen einsenden"
+          title="eigene Fragen einsenden"
           color="transparent"
           size="lg"
           onPress={() => {
@@ -116,9 +117,8 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   help_button: {
-    position: 'absolute',
-    top: 0,
-    right: 20,
+    marginTop: 18,
+    width: 210,
   },
   container: {
     flex: 1,
@@ -127,9 +127,11 @@ const styles = StyleSheet.create({
   },
   logo_container: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'center',
-    marginBottom: 24,
+    alignItems: 'center',
+    marginBottom: 12,
+    width: '100%',
   },
   logo_ring: {
     width: 120,
@@ -161,9 +163,12 @@ const styles = StyleSheet.create({
   },
   group_botton: {
     flexBasis: '50%',
-    maxWidth: 150,
-    marginBottom: 36,
+    maxWidth: 180,
+    marginBottom: 12,
     paddingHorizontal: 6,
+  },
+  last_group_botton: {
+    marginBottom: 36,
   },
   paragraph: {
     paddingTop: 16,
