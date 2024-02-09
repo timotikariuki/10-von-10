@@ -35,14 +35,12 @@ function MenuScreen({navigation}) {
       />
       <ImageBackground
         style={styles.background_container}
-        source={assetsPaths.images.background_1}
-      />
-      <View style={styles.logo_container}>
+        source={assetsPaths.images.background_1}>
         <View style={styles.logo_ring}>
           <Image style={styles.logo} source={assetsPaths.images.logo_black} />
         </View>
         <TransparentButton onPress={handleHelp} style={styles.help_button} />
-      </View>
+      </ImageBackground>
 
       <View style={styles.card_container}>
         {[
@@ -81,6 +79,7 @@ function MenuScreen({navigation}) {
           onPress={() => {
             navigation.navigate('old_quote', {oldQuoteItem});
           }}
+          color="orange"
         />
         <GroupButton
           style={styles.group_botton}
@@ -88,9 +87,10 @@ function MenuScreen({navigation}) {
           onPress={() => {
             handlePress(Math.floor(Math.random() * 4));
           }}
+          color="orange"
         />
       </View>
-      <View style={[styles.button_group, styles.last_group_botton]}>
+      <View style={styles.button_group}>
         <GroupButton
           style={styles.group_botton}
           title="eigene Fragen einsenden"
@@ -107,17 +107,19 @@ function MenuScreen({navigation}) {
 
 const styles = StyleSheet.create({
   background_container: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
     width: '100%',
     height: 280,
     resizeMode: 'cover',
-    backgroundColor: assetsPaths.colors.white,
     elevation: 5,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    paddingVertical: 24,
+    marginTop: -48,
+    marginBottom: 12,
   },
   help_button: {
-    marginTop: 18,
     width: 210,
   },
   container: {
@@ -125,27 +127,18 @@ const styles = StyleSheet.create({
     backgroundColor: assetsPaths.colors.white,
     paddingVertical: 32,
   },
-  logo_container: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 12,
-    width: '100%',
-  },
   logo_ring: {
     width: 120,
     height: 120,
     borderRadius: 60,
     overflow: 'hidden',
     backgroundColor: 'transparent',
-    display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 24,
   },
   logo: {
-    width: 110,
-    height: 110,
+    width: '90%',
+    height: '90%',
     borderRadius: 60,
   },
   card_container: {
@@ -167,9 +160,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     paddingHorizontal: 6,
   },
-  last_group_botton: {
-    marginBottom: 36,
-  },
   paragraph: {
     paddingTop: 16,
     paddingHorizontal: 24,
@@ -178,9 +168,6 @@ const styles = StyleSheet.create({
     color: '#5d5f5f',
     fontSize: 16,
     lineHeight: 32,
-  },
-  bright_blue: {
-    color: assetsPaths.colors.bright_blue,
   },
   bold: {
     fontWeight: 'bold',

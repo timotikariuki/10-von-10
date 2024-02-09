@@ -198,7 +198,7 @@ function HelpScreen({navigation}) {
 
 const styles = StyleSheet.create({
   section1_logo: {
-    height: 320,
+    height: 280,
     resizeMode: 'contain',
   },
   return_button: {
@@ -214,6 +214,9 @@ const styles = StyleSheet.create({
     marginBottom: 120,
   },
   scroll_content: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
     alignItems: 'center',
   },
   title: {

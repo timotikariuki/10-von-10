@@ -39,17 +39,7 @@ function OldQuoteScreen({navigation, route}) {
         />
         <View style={styles.scroll_view}>
           <View style={styles.scroll_content}>
-            <Image
-              source={
-                oldQuoteItem.category > -1
-                  ? assetsPaths.images.category_logos[oldQuoteItem.category]
-                  : assetsPaths.images.logo_black
-              }
-              style={styles.section1_logo}
-            />
-
             <Text style={styles.text}>{oldQuoteItem?.content}</Text>
-            
           </View>
         </View>
       </ImageBackground>
@@ -66,12 +56,6 @@ function OldQuoteScreen({navigation, route}) {
 }
 
 const styles = StyleSheet.create({
-  section1_logo: {
-    height: 320,
-    height: 240,
-    resizeMode: 'contain',
-    marginBottom: 48,
-  },
   return_button: {
     position: 'absolute',
     top: 32,
@@ -82,8 +66,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scroll_view: {
-    marginTop: 120,
-    marginBottom: 120,
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
   },
   scroll_content: {
     alignItems: 'center',

@@ -6,7 +6,7 @@ const images = {
   card_white: require('./assets/card_white.png'),
   logo_white: require('./assets/logo_white.png'),
   logo_black: require('./assets/logo_black.png'),
-  
+
   background_1: require('./assets/header_backgroud.png'),
   background_2: require('./assets/main_background.png'),
 
@@ -17,11 +17,13 @@ const images = {
     require('./assets/laughing_with_tears_and_pointing.png'),
     require('./assets/melting_ice_cube.png'),
     require('./assets/Flag-red.png'),
-  ]
+  ],
 };
 
 const colors = {
-  bright_blue : '#257CFF',
+  bright_blue: '#257CFF',
+  beige_cream: '#f3cb85',
+  dark_beige: "#e0b96a",
   dark: '#1D1E25',
   white: '#fff',
   orange: '#ED8F12',

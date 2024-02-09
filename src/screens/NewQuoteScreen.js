@@ -38,19 +38,19 @@ function NewQuoteScreen({navigation}) {
   };
 
   const handleSaveQuote = () => {
-    if(Number.isNaN === parseInt(newQuote.category)){
-      Alert.alert('Bekanntmachung', 'Neues Angebot erfolgreich gespeichert!')
-    }else 
-    addQuote(newQuote, () => {
-      Alert.alert('Erfolg', 'Neues Angebot erfolgreich gespeichert!', [
-        {
-          text: 'Ok',
-          onPress: () => {
-            setNewQuote({content: '', category: 0});
+    if (Number.isNaN === parseInt(newQuote.category)) {
+      Alert.alert('Bekanntmachung', 'Neues Angebot erfolgreich gespeichert!');
+    } else
+      addQuote(newQuote, () => {
+        Alert.alert('Erfolg', 'Neues Angebot erfolgreich gespeichert!', [
+          {
+            text: 'Ok',
+            onPress: () => {
+              setNewQuote({content: '', category: 0});
+            },
           },
-        },
-      ]);
-    });
+        ]);
+      });
   };
 
   const handleCancelQuote = () => {
@@ -77,7 +77,7 @@ function NewQuoteScreen({navigation}) {
       />
       <ScrollView style={styles.scroll_view}>
         <View style={styles.scroll_content}>
-          <View style={styles.form}>
+          {/* <View style={styles.form}>
             <View style={styles.form_title}>
               <Text>Neue Frage</Text>
             </View>
@@ -108,15 +108,17 @@ function NewQuoteScreen({navigation}) {
                 title="Stornieren"
                 onPress={handleCancelQuote}
                 disabled={newQuote.content === ''}
+                color="orange"
               />
               <GroupButton
                 style={styles.group_botton}
                 title="Speichern"
                 onPress={handleSaveQuote}
                 disabled={newQuote.content === ''}
+                color="orange"
               />
             </View>
-          </View>
+          </View> */}
 
           <View style={styles.form}>
             <View style={styles.form_title}>
@@ -152,6 +154,7 @@ function NewQuoteScreen({navigation}) {
                   players[0]?.name === _players[0]?.name &&
                   players[1]?.name === _players[1]?.name
                 }
+                color="orange"
               />
               <GroupButton
                 style={styles.group_botton}
@@ -161,6 +164,7 @@ function NewQuoteScreen({navigation}) {
                   players[0]?.name === _players[0]?.name &&
                   players[1]?.name === _players[1]?.name
                 }
+                color="orange"
               />
             </View>
           </View>
@@ -172,20 +176,19 @@ function NewQuoteScreen({navigation}) {
 
 const styles = StyleSheet.create({
   background_container: {
-    flex:1,
+    flex: 1,
     width: '100%',
     resizeMode: 'cover',
-    backgroundColor: assetsPaths.colors.white,
     elevation: 5,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 18
+    paddingVertical: 36,
   },
   section1_logo: {
-    height: "100%",
-    resizeMode: 'contain'
+    height: '80%',
+    resizeMode: 'contain',
   },
   return_button: {
     position: 'absolute',
@@ -268,7 +271,7 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     marginHorizontal: 12,
     marginVertical: 32,
-    borderColor: assetsPaths.colors.bright_blue,
+    borderColor: assetsPaths.colors.orange,
     borderWidth: 1,
     borderRadius: 8,
   },

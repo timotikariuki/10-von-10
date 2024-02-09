@@ -18,10 +18,19 @@ const CardButton = ({onPress, backgroundImage, category, isLeft = 0}) => {
       ]}>
       <TouchableOpacity onPress={onPress} style={styles.pressable}>
         <ImageBackground style={styles.background} source={backgroundImage}>
-          <Text style={styles.text}>{`Kategorie ${category + 1}`}</Text>
           <Image
             style={styles.logo}
             source={assetsPaths.images.category_logos[category]}></Image>
+          <Text style={styles.text}>
+            {
+              [
+                'Ernste Fragen',
+                'Lustige Fragen',
+                'Unangenehme Fragen',
+                'Fangfragen',
+              ][category]
+            }
+          </Text>
         </ImageBackground>
       </TouchableOpacity>
     </View>
@@ -31,32 +40,34 @@ const CardButton = ({onPress, backgroundImage, category, isLeft = 0}) => {
 const styles = StyleSheet.create({
   container: {
     flexBasis: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    height: "40%",
     padding: 6,
   },
   l_container: {paddingLeft: 12},
   r_container: {paddingRight: 12},
   pressable: {
-    width: 180,
+    width: '100%',
     borderRadius: 16,
     overflow: 'hidden',
     elevation: 5,
   },
   background: {
-    paddingVertical: 24,
+    position: 'relative',
+    paddingVertical: 12,
     paddingHorizontal: 6,
     alignItems: 'center',
   },
   logo: {
-    height: 100,
-    width: 100,
+    width: '80%',
+    height: '100%',
     resizeMode: 'contain',
   },
   text: {
+    position: 'absolute',
+    bottom: 12,
+    width: '100%',
     color: '#00303f',
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 36,

@@ -10,7 +10,10 @@
     "lint": "eslint .",
     "build:android": "react-native run-android --variant=release",
     "build:ios": "react-native run-ios --configuration Release",
-    "key-sign":"keytool -genkeypair -v -keystore my-release-key.keystore -keyalg RSA -keysize 2048 -validity 10000 -alias my-key-alias"
+    "key-sign":"keytool -genkeypair -v -keystore my-release-key.keystore -keyalg RSA -keysize 2048 -validity 10000 -alias my-key-alias",
+    "emulator:list":"emulator -list-avds",
+    "emulator:31":"emulator -avd Pixel_6_API_31"
+
   },
   "dependencies": {
     "@react-navigation/native": "6.1.9",

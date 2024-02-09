@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
   bg_transparent:{
     backgroundColor: 'transparent',
-    color: assetsPaths.colors.bright_blue,
+    color: assetsPaths.colors.beige_cream,
   }
 });
 

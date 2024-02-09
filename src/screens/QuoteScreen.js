@@ -119,15 +119,6 @@ function QuoteScreen({navigation, route}) {
         />
         <View style={styles.scroll_view}>
           <View style={styles.scroll_content}>
-            <Image
-              source={
-                targetCategory > -1
-                  ? assetsPaths.images.category_logos[targetCategory]
-                  : assetsPaths.images.logo_black
-              }
-              style={styles.section1_logo}
-            />
-
             <Text style={styles.text}>{quoteItem?.content}</Text>
             <Text
               style={[
@@ -157,11 +148,6 @@ function QuoteScreen({navigation, route}) {
 }
 
 const styles = StyleSheet.create({
-  section1_logo: {
-    height: 180,
-    resizeMode: 'contain',
-    marginBottom: 48,
-  },
   return_button: {
     position: 'absolute',
     top: 32,
@@ -172,8 +158,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scroll_view: {
-    marginTop: 120,
-    marginBottom: 120,
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
   },
   scroll_content: {
     alignItems: 'center',
