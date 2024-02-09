@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
   },
   group_botton: {
     flexBasis: '50%',
+    minWidth: 150,
     maxWidth: 180,
     marginBottom: 12,
     paddingHorizontal: 6,

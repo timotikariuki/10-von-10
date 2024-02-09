@@ -151,7 +151,7 @@ export default [
     { category: 2, content: 'Er ist eine 10/10, aber dreht TikToks und geht auch live' },
     { category: 2, content: 'Sie ist eine 8/10, aber will unbedingt Fame werden auf Social Media' },
     { category: 2, content: 'Er ist eine 10/10, aber hat mit 30 noch keinen Studien- oder Ausbildungsabschluss' },
-    { category: 2, content: '117. Sie ist eine 7/10, aber fotografiert jedes Mal das Essen bevor man isst' },
+    { category: 2, content: 'Sie ist eine 7/10, aber fotografiert jedes Mal das Essen bevor man isst' },
     { category: 2, content: 'Er ist eine 8/10, aber sammelt Stempelkarten in der Shishabar' },
     { category: 2, content: 'Sie ist eine 8/10, aber hat ein intim Piercing' },
     { category: 2, content: 'Er ist eine 8/10, aber trägt nur gefälschte Sachen' },
