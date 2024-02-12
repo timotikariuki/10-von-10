@@ -59,16 +59,16 @@ function MenuScreen({navigation}) {
             isLeft={idx % 2}
           />
         ))}
+      </View>
 
-        <View style={styles.paragraph}>
-          <Text style={styles.description}>
-            Nächste Frage von{' '}
-            <Text style={[styles.bold]}>{players[selected]?.name}</Text>
-          </Text>
-          <Text style={styles.description}>
-            <Text style={[styles.bold]}>{countIsRead}</Text> Fragen gespielt
-          </Text>
-        </View>
+      <View style={styles.paragraph}>
+        <Text style={styles.description}>
+          Nächste Frage von{' '}
+          <Text style={[styles.bold]}>{players[selected]?.name}</Text>
+        </Text>
+        <Text style={styles.description}>
+          <Text style={[styles.bold]}>{countIsRead}</Text> Fragen gespielt
+        </Text>
       </View>
 
       <View style={styles.button_group}>
@@ -92,7 +92,7 @@ function MenuScreen({navigation}) {
       </View>
       <View style={styles.button_group}>
         <GroupButton
-          style={styles.group_botton}
+          style={[styles.group_botton, styles.last_group_botton]}
           title="eigene Fragen einsenden"
           color="transparent"
           size="lg"
@@ -108,18 +108,18 @@ function MenuScreen({navigation}) {
 const styles = StyleSheet.create({
   background_container: {
     width: '100%',
-    height: 280,
+    height: 240,
     resizeMode: 'cover',
     elevation: 5,
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 24,
     marginTop: -48,
     marginBottom: 12,
   },
   help_button: {
+    marginTop: 12,
     width: 210,
   },
   container: {
@@ -158,12 +158,17 @@ const styles = StyleSheet.create({
     flexBasis: '50%',
     minWidth: 150,
     maxWidth: 180,
-    marginBottom: 12,
+    marginBottom: 6,
     paddingHorizontal: 6,
   },
+  last_group_botton: {
+    flexBasis: '80%',
+    minWidth: 200,
+    maxWidth: 250,
+  },
   paragraph: {
-    paddingTop: 16,
     paddingHorizontal: 24,
+    paddingVertical: 12
   },
   description: {
     color: '#5d5f5f',

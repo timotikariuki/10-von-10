@@ -21,16 +21,18 @@ const CardButton = ({onPress, backgroundImage, category, isLeft = 0}) => {
           <Image
             style={styles.logo}
             source={assetsPaths.images.category_logos[category]}></Image>
-          <Text style={styles.text}>
-            {
-              [
-                'Ernste Fragen',
-                'Lustige Fragen',
-                'Unangenehme Fragen',
-                'Fangfragen',
-              ][category]
-            }
-          </Text>
+          <View style={styles.text_container}>
+            <Text style={styles.text}>
+              {
+                [
+                  'Ernste Fragen',
+                  'Lustige Fragen',
+                  'Unangenehme Fragen',
+                  'Fangfragen',
+                ][category]
+              }
+            </Text>
+          </View>
         </ImageBackground>
       </TouchableOpacity>
     </View>
@@ -40,7 +42,7 @@ const CardButton = ({onPress, backgroundImage, category, isLeft = 0}) => {
 const styles = StyleSheet.create({
   container: {
     flexBasis: '50%',
-    height: "40%",
+    height: '50%',
     padding: 6,
   },
   l_container: {paddingLeft: 12},
@@ -61,16 +63,23 @@ const styles = StyleSheet.create({
     width: '80%',
     height: '100%',
     resizeMode: 'contain',
+    opacity: 0.5
+  },
+  text_container: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    display: "flex",
+    justifyContent: "center",
+    alignItems:'center'
   },
   text: {
-    position: 'absolute',
-    bottom: 12,
-    width: '100%',
     color: '#00303f',
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center',
     lineHeight: 36,
+    textAlign: "center",
+    paddingTop: 24
   },
 });
 
