@@ -166,7 +166,10 @@ const QuoteProvider = ({children}) => {
           Alert.alert(`Tabelle '${tableName}' wurde erfolgreich gelöscht.`);
         },
         () => {
-          Alert.alert('Fehler', `Fehler beim Löschen der Tabelle'${tableName}'`);
+          Alert.alert(
+            'Fehler',
+            `Fehler beim Löschen der Tabelle'${tableName}'`,
+          );
         },
       );
     });
@@ -233,11 +236,11 @@ const QuoteProvider = ({children}) => {
                   sqliteDB.transaction(tx => {
                     tx.executeSql(
                       'INSERT INTO users (name) VALUES (?), (?);',
-                      ['Yalcin', 'Kyrylo'],
+                      ['Spieler 1', 'Spieler 2'],
                       () => {
                         setPlayers([
-                          {id: 1, name: 'Yalcin'},
-                          {id: 2, name: 'Kyrylo'},
+                          {id: 1, name: 'Spieler 1'},
+                          {id: 2, name: 'Spieler 2'},
                         ]);
                       },
                       handleTableError,
