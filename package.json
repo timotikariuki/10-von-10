@@ -7,7 +7,11 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "release:android": "react-native run-android --variant=release",
+    "release:ios": "react-native run-ios --configuration Release",
+    "emulator:list":"emulator -list-avds",
+    "emulator:31":"emulator -avd Pixel_6_API_31"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.9",
