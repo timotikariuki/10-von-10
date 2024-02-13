@@ -7,60 +7,106 @@
  */
 
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import type {Node} from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from 'react-native';
 
-import HelpScreen from './src/screens/HelpScreen';
-import MenuScreen from './src/screens/MenuScreen';
-import QuoteScreen from './src/screens/QuoteScreen';
-import NewQuoteScreen from './src/screens/NewQuoteScreen';
-import OldQuoteScreen from './src/screens/OldQuoteScreen';
+import {
+  Colors,
+  DebugInstructions,
+  Header,
+  LearnMoreLinks,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
 
-import {QuoteProvider} from './src/database/db.context';
-
-const Stack = createNativeStackNavigator();
-
-const App = () => {
-
+const Section = ({children, title}): Node => {
+  const isDarkMode = useColorScheme() === 'dark';
   return (
-    <QuoteProvider>
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="menu"
-          screenOptions={{
-            animationDuration: 50,
-            animation: 'slide_from_bottom',
-          }}>
-          <Stack.Screen
-            name="menu"
-            component={MenuScreen}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="quote"
-            component={QuoteScreen}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="help"
-            component={HelpScreen}
-            options={{headerShown: false}}
-          />
-          
-          <Stack.Screen
-            name="old_quote"
-            component={OldQuoteScreen}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="new_quote"
-            component={NewQuoteScreen}
-            options={{headerShown: false}}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </QuoteProvider>
+    <View style={styles.sectionContainer}>
+      <Text
+        style={[
+          styles.sectionTitle,
+          {
+            color: isDarkMode ? Colors.white : Colors.black,
+          },
+        ]}>
+        {title}
+      </Text>
+      <Text
+        style={[
+          styles.sectionDescription,
+          {
+            color: isDarkMode ? Colors.light : Colors.dark,
+          },
+        ]}>
+        {children}
+      </Text>
+    </View>
   );
 };
+
+const App: () => Node = () => {
+  const isDarkMode = useColorScheme() === 'dark';
+
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
+
+  return (
+    <SafeAreaView style={backgroundStyle}>
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={backgroundStyle}>
+        <Header />
+        <View
+          style={{
+            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          }}>
+          <Section title="Step One">
+            Edit <Text style={styles.highlight}>App.js</Text> to change this
+            screen and then come back to see your edits.
+          </Section>
+          <Section title="See Your Changes">
+            <ReloadInstructions />
+          </Section>
+          <Section title="Debug">
+            <DebugInstructions />
+          </Section>
+          <Section title="Learn More">
+            Read the docs to discover what to do next:
+          </Section>
+          <LearnMoreLinks />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+  },
+  sectionDescription: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '400',
+  },
+  highlight: {
+    fontWeight: '700',
+  },
+});
 
 export default App;
