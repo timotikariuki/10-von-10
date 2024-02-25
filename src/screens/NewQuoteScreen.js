@@ -83,10 +83,12 @@ function NewQuoteScreen({navigation}) {
         <View style={styles.scroll_content}>
           <View style={styles.form}>
             <View style={styles.form_title}>
-              <Text>Neue Frage</Text>
+              <Text style={styles.label_color}>Neue Frage</Text>
             </View>
             <View style={styles.form_modal}>
-              <Text style={styles.label}>Kategorie :</Text>
+              <Text style={[styles.label, styles.label_color]}>
+                Kategorie :
+              </Text>
               <TextInput
                 style={styles.control}
                 onChangeText={text => {
@@ -95,7 +97,9 @@ function NewQuoteScreen({navigation}) {
                 value={newQuote?.category.toString() || ''}></TextInput>
             </View>
             <View style={styles.form_modal}>
-              <Text style={styles.label}>Gender :</Text>
+              <Text style={[styles.label, styles.label_color]}>
+                Geschlecht :
+              </Text>
               <TextInput
                 style={styles.control}
                 onChangeText={text => {
@@ -104,7 +108,7 @@ function NewQuoteScreen({navigation}) {
                 value={newQuote?.gender.toString() || ''}></TextInput>
             </View>
             <View style={styles.form_modal}>
-              <Text style={styles.label}>Inhalt :</Text>
+              <Text style={[styles.label, styles.label_color]}>Inhalt :</Text>
               <TextInput
                 style={styles.control}
                 onChangeText={text => {
@@ -143,10 +147,10 @@ function NewQuoteScreen({navigation}) {
 
           <View style={styles.form}>
             <View style={styles.form_title}>
-              <Text>Spielername</Text>
+              <Text style={styles.label_color}>Spielername</Text>
             </View>
             <View style={styles.form_modal}>
-              <Text style={styles.label}>Spieler 1:</Text>
+              <Text style={[styles.label, styles.label_color]}>Spieler 1:</Text>
               <TextInput
                 style={styles.control}
                 value={_players[0]?.name || ''}
@@ -156,7 +160,7 @@ function NewQuoteScreen({navigation}) {
               />
             </View>
             <View style={styles.form_modal}>
-              <Text style={styles.label}>Spieler 2:</Text>
+              <Text style={[styles.label, styles.label_color]}>Spieler 2:</Text>
               <TextInput
                 style={styles.control}
                 value={_players[1]?.name || ''}
@@ -197,7 +201,6 @@ function NewQuoteScreen({navigation}) {
 
 const styles = StyleSheet.create({
   background_container: {
-    flex: 1,
     width: '100%',
     resizeMode: 'cover',
     elevation: 5,
@@ -205,16 +208,18 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 36,
+    height: 120,
   },
   section1_logo: {
-    height: '80%',
+    height: 60,
     resizeMode: 'contain',
   },
   return_button: {
     position: 'absolute',
-    top: 32,
+    top: 56,
     left: 20,
+    zIndex: 99,
+    backgroundColor: '#fff7',
   },
   container: {
     flex: 1,
@@ -225,15 +230,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  subtitle: {
-    color: '#00303f',
-    width: '100%',
-    paddingHorizontal: 48,
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    lineHeight: 36,
-  },
   text: {
     color: '#00303f',
     width: '100%',
@@ -242,36 +238,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     lineHeight: 36,
     marginBottom: 16,
-  },
-  section3_container: {
-    width: '100%',
-    paddingHorizontal: 48,
-    paddingBottom: 200,
-    position: 'relative',
-    marginTop: 160,
-  },
-  section3_title: {
-    maxWidth: 360,
-    color: '#00303f',
-    fontSize: 24,
-    fontWeight: 'bold',
-    lineHeight: 48,
-  },
-  section3_logo: {
-    position: 'absolute',
-    bottom: 0,
-    right: 24,
-    height: 280,
-    resizeMode: 'contain',
-    opacity: 0.7,
-  },
-  section4_text: {
-    color: '#00303f',
-    width: '100%',
-    paddingHorizontal: 48,
-    fontSize: 24,
-    fontWeight: 'bold',
-    lineHeight: 36,
   },
   button_group: {
     display: 'flex',
@@ -291,7 +257,7 @@ const styles = StyleSheet.create({
     padding: 12,
     paddingTop: 24,
     marginHorizontal: 12,
-    marginVertical: 32,
+    marginTop: 32,
     borderColor: assetsPaths.colors.orange,
     borderWidth: 1,
     borderRadius: 8,
@@ -308,13 +274,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingBottom: 8,
     borderBottomWidth: 1,
-    borderBottomColor: 'gray',
+    borderBottomColor: assetsPaths.colors.orange,
     marginBottom: 24,
     textAlign: 'center',
   },
+  label_color: {
+    color: assetsPaths.colors.orange,
+  },
   label: {
     width: 100,
-    fontSize: 18,
     lineHeight: 36,
     fontWeight: 'bold',
     textAlign: 'right',
@@ -325,7 +293,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderWidth: 1,
     fontSize: 18,
-    height: 36,
+    height: 48,
     lineHeight: 36,
     textAlign: 'center',
     marginHorizontal: 24,

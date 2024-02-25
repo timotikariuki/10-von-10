@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Image,
-  StyleSheet,
-  View,
-  Text,
-  ImageBackground,
-} from 'react-native';
+import {Image, StyleSheet, View, Text, ImageBackground} from 'react-native';
 
 import GroupButton from '../components/GroupButton';
 import assetsPaths from '../assetsPaths';
@@ -58,9 +52,10 @@ function OldQuoteScreen({navigation, route}) {
 const styles = StyleSheet.create({
   return_button: {
     position: 'absolute',
-    top: 32,
+    top: 56,
     left: 20,
-    backgroundColor: '#ffffff66',
+    zIndex: 99,
+    backgroundColor: '#fff7',
   },
   container: {
     flex: 1,

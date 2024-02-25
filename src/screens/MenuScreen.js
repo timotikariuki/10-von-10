@@ -117,9 +117,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: -48,
     marginBottom: 12,
+    paddingTop: 24,
   },
   help_button: {
-    marginTop: 12,
     width: 210,
   },
   container: {
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   logo_ring: {
     width: 120,
     height: 120,
-    borderRadius: 60,
+    borderRadius: 100,
     overflow: 'hidden',
     backgroundColor: 'transparent',
     alignItems: 'center',
@@ -139,11 +139,14 @@ const styles = StyleSheet.create({
   logo: {
     width: '90%',
     height: '90%',
-    borderRadius: 60,
+    borderRadius: 100,
   },
   card_container: {
+    width: '100%',
     flex: 1,
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
@@ -168,7 +171,7 @@ const styles = StyleSheet.create({
   },
   paragraph: {
     paddingHorizontal: 24,
-    paddingVertical: 12
+    paddingVertical: 12,
   },
   description: {
     color: '#5d5f5f',

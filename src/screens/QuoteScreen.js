@@ -40,10 +40,10 @@ function QuoteScreen({navigation, route}) {
       setQuoteStatus({total, isRead});
       setQuoteItem(selItem);
 
-      if (total <= isRead || !selItem){
+      if (total <= isRead || !selItem) {
         Alert.alert(
           'Bekanntmachung',
-          `Vollendet! ${players[selected]?.name}'s Frage. Markieren Sie bitte alle als ungelesen`,
+          `Sie haben alle Fragen zu ${players[selected]?.name} beantwortet. Bitte alle Fragen zurücksetzen.`,
           [
             {text: 'Heim', onPress: handleBack},
             {
@@ -67,7 +67,7 @@ function QuoteScreen({navigation, route}) {
             },
           ],
         );
-        }
+      }
     });
   };
 
@@ -151,9 +151,10 @@ function QuoteScreen({navigation, route}) {
 const styles = StyleSheet.create({
   return_button: {
     position: 'absolute',
-    top: 32,
+    top: 56,
     left: 20,
-    backgroundColor: '#ffffff66',
+    zIndex: 99,
+    backgroundColor: '#fff7',
   },
   container: {
     flex: 1,
@@ -177,7 +178,6 @@ const styles = StyleSheet.create({
     minHeight: 120,
   },
   description: {
-    color: '#5d5f5f',
     paddingHorizontal: 24,
     fontSize: 16,
     fontWeight: 'bold',

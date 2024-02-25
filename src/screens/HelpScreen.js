@@ -160,7 +160,14 @@ function HelpScreen({navigation}) {
       <ImageBackground
         style={styles.container}
         source={assetsPaths.images.card_white}>
-        <TransparentButton onPress={()=>{navigation.navigate('menu')}} style={styles.return_button} color='dark' content="<"/>
+        <TransparentButton
+          onPress={() => {
+            navigation.navigate('menu');
+          }}
+          style={styles.return_button}
+          color="dark"
+          content="<"
+        />
         <ScrollView style={styles.scroll_view}>
           <View style={styles.scroll_content}>
             {
@@ -203,8 +210,10 @@ const styles = StyleSheet.create({
   },
   return_button: {
     position: 'absolute',
-    top: 32,
+    top: 56,
     left: 20,
+    zIndex: 99,
+    backgroundColor: '#fff7',
   },
   container: {
     flex: 1,
@@ -214,9 +223,9 @@ const styles = StyleSheet.create({
     marginBottom: 120,
   },
   scroll_content: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   title: {
