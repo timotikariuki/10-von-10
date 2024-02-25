@@ -16,11 +16,11 @@ const QuoteProvider = ({children}) => {
   const [countIsRead, setCountIsRead] = useState(0);
   const [oldQuoteItem, setOldQuoteItem] = useState(null);
 
-  const selectQuotes = ({category = '*', isRead = '*'}, cb) => {
+  const selectQuotes = ({category = '*', gender = "*", isRead = '*'}, cb) => {
     sqliteDB.transaction(tx => {
       tx.executeSql(
-        'SELECT * FROM quotes WHERE category = ?, isRead = ?',
-        [category, isRead],
+        'SELECT * FROM quotes WHERE category = ?, gender = ?, isRead = ?',
+        [category, gender, isRead],
         (_, {rows}) => {
           cb(rowsToJson(rows));
         },
@@ -39,15 +39,15 @@ const QuoteProvider = ({children}) => {
             const _total = rows.item(0).count;
             sqliteDB.transaction(tx => {
               tx.executeSql(
-                'SELECT COUNT(*) AS count FROM quotes WHERE isRead = 1 AND  category = ?',
+                'SELECT COUNT(*) AS count FROM quotes WHERE isRead = 1 AND category = ?',
                 [category],
                 (_, {rows}) => {
                   const _isRead = rows.item(0).count;
 
                   sqliteDB.transaction(tx => {
                     tx.executeSql(
-                      'SELECT * FROM quotes WHERE isRead = 0 AND category = ? ORDER BY RANDOM() LIMIT 1;',
-                      [category],
+                      'SELECT * FROM quotes WHERE isRead = 0 AND category = ? AND gender = ? ORDER BY RANDOM() LIMIT 1;',
+                      [category, selected],
                       (_, {rows}) => {
                         const _selItem = rows.item(0);
                         cb({
@@ -70,11 +70,11 @@ const QuoteProvider = ({children}) => {
     }
   };
 
-  const addQuote = ({category, content}, cb) => {
+  const addQuote = ({category, gender, content}, cb) => {
     sqliteDB.transaction(tx => {
       tx.executeSql(
-        'INSERT INTO quotes (category, content, isRead) VALUES (?, ?, 0)',
-        [category, content],
+        'INSERT INTO quotes (category, gender, content, isRead) VALUES (?, ?, ?, 0)',
+        [category, gender, content],
         () => {
           cb();
         },
@@ -178,7 +178,7 @@ const QuoteProvider = ({children}) => {
   const initializeQuotes = () => {
     sqliteDB.transaction(tx => {
       tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS quotes (id INTEGER PRIMARY KEY AUTOINCREMENT, category INTEGER, content TEXT, isRead BOOLEAN);',
+        'CREATE TABLE IF NOT EXISTS quotes (id INTEGER PRIMARY KEY AUTOINCREMENT, category INTEGER, gender INTEGER, content TEXT, isRead BOOLEAN);',
         [],
         () => {
           sqliteDB.transaction(tx => {
@@ -190,8 +190,8 @@ const QuoteProvider = ({children}) => {
                   sqliteDB.transaction(tx => {
                     db.forEach(newQuote => {
                       tx.executeSql(
-                        'INSERT INTO quotes (category, content, isRead) VALUES (?, ?, 0);',
-                        [newQuote.category, newQuote.content],
+                        'INSERT INTO quotes (category, gender, content, isRead) VALUES (?, ?, ?, 0);',
+                        [newQuote.category, newQuote.gender, newQuote.content],
                         () => {
                           setCountIsRead(0);
                         },

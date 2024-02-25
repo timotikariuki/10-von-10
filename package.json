@@ -9,9 +9,12 @@
     "test": "jest",
     "lint": "eslint .",
     "release:android": "react-native run-android --variant=release",
+    "release:prebundle":"npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
+    "release:bundle": "cd android && ./gradlew bundleRelease",
     "release:ios": "react-native run-ios --configuration Release",
     "emulator:list":"emulator -list-avds",
-    "emulator:31":"emulator -avd Pixel_6_API_31"
+    "emulator:33":"emulator -avd Pixel_6_API_33",
+    "keystore":"keytool -genkeypair -v -keystore release-key-1.keystore -alias tenvonten -keyalg RSA -keysize 2048 -validity 10000"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.9",

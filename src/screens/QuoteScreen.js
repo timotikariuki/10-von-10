@@ -40,10 +40,10 @@ function QuoteScreen({navigation, route}) {
       setQuoteStatus({total, isRead});
       setQuoteItem(selItem);
 
-      if (total <= isRead)
+      if (total <= isRead || !selItem){
         Alert.alert(
           'Bekanntmachung',
-          'Vollendet! Markieren Sie bitte alle als ungelesen',
+          `Vollendet! ${players[selected]?.name}'s Frage. Markieren Sie bitte alle als ungelesen`,
           [
             {text: 'Heim', onPress: handleBack},
             {
@@ -67,6 +67,7 @@ function QuoteScreen({navigation, route}) {
             },
           ],
         );
+        }
     });
   };
 

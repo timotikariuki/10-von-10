@@ -18,7 +18,11 @@ function NewQuoteScreen({navigation}) {
   const {addQuote, updateUserName, players} = useContext(QuoteContext);
 
   const [_players, set_Players] = useState([{}, {}]);
-  const [newQuote, setNewQuote] = useState({content: '', category: 0});
+  const [newQuote, setNewQuote] = useState({
+    content: '',
+    gender: -1,
+    category: -1,
+  });
 
   useEffect(() => {
     set_Players(players);
@@ -46,7 +50,7 @@ function NewQuoteScreen({navigation}) {
           {
             text: 'Ok',
             onPress: () => {
-              setNewQuote({content: '', category: 0});
+              setNewQuote({content: '', gender: -1, category: -1});
             },
           },
         ]);
@@ -54,7 +58,7 @@ function NewQuoteScreen({navigation}) {
   };
 
   const handleCancelQuote = () => {
-    setNewQuote({content: '', category: 0});
+    setNewQuote({content: '', gender: -1, category: -1});
   };
 
   return (
@@ -77,7 +81,7 @@ function NewQuoteScreen({navigation}) {
       />
       <ScrollView style={styles.scroll_view}>
         <View style={styles.scroll_content}>
-          {/* <View style={styles.form}>
+          <View style={styles.form}>
             <View style={styles.form_title}>
               <Text>Neue Frage</Text>
             </View>
@@ -89,6 +93,15 @@ function NewQuoteScreen({navigation}) {
                   setNewQuote({...newQuote, category: text});
                 }}
                 value={newQuote?.category.toString() || ''}></TextInput>
+            </View>
+            <View style={styles.form_modal}>
+              <Text style={styles.label}>Gender :</Text>
+              <TextInput
+                style={styles.control}
+                onChangeText={text => {
+                  setNewQuote({...newQuote, gender: text});
+                }}
+                value={newQuote?.gender.toString() || ''}></TextInput>
             </View>
             <View style={styles.form_modal}>
               <Text style={styles.label}>Inhalt :</Text>
@@ -107,18 +120,26 @@ function NewQuoteScreen({navigation}) {
                 style={styles.group_botton}
                 title="Stornieren"
                 onPress={handleCancelQuote}
-                disabled={newQuote.content === ''}
+                disabled={
+                  newQuote.content === '' &&
+                  newQuote.gender === -1 &&
+                  newQuote.category === -1
+                }
                 color="orange"
               />
               <GroupButton
                 style={styles.group_botton}
                 title="Speichern"
                 onPress={handleSaveQuote}
-                disabled={newQuote.content === ''}
+                disabled={
+                  newQuote.content === '' ||
+                  newQuote.gender === -1 ||
+                  newQuote.category === -1
+                }
                 color="orange"
               />
             </View>
-          </View> */}
+          </View>
 
           <View style={styles.form}>
             <View style={styles.form_title}>
