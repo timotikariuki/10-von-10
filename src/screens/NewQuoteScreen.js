@@ -10,6 +10,7 @@ import {
   Alert,
 } from 'react-native';
 import GroupButton from '../components/GroupButton';
+import ComboSelect from '../components/ComboSelect';
 import assetsPaths from '../assetsPaths';
 import TransparentButton from '../components/TransparentButton';
 import {QuoteContext} from '../database/db.context';
@@ -89,23 +90,35 @@ function NewQuoteScreen({navigation}) {
               <Text style={[styles.label, styles.label_color]}>
                 Kategorie :
               </Text>
-              <TextInput
+              <ComboSelect
                 style={styles.control}
-                onChangeText={text => {
-                  setNewQuote({...newQuote, category: text});
+                options={[
+                  {label: 'Ernste Fragen', value: 0},
+                  {label: 'Lustige Fragen', value: 1},
+                  {label: 'Unangenehme Fragen', value: 2},
+                  {label: 'Fangfragen', value: 3},
+                ]}
+                value={newQuote?.category}
+                onSelect={value => {
+                  setNewQuote({...newQuote, category: value});
                 }}
-                value={newQuote?.category.toString() || ''}></TextInput>
+              />
             </View>
             <View style={styles.form_modal}>
               <Text style={[styles.label, styles.label_color]}>
                 Geschlecht :
               </Text>
-              <TextInput
+              <ComboSelect
                 style={styles.control}
-                onChangeText={text => {
-                  setNewQuote({...newQuote, gender: text});
+                options={[
+                  {label: 'Männlich', value: 0},
+                  {label: 'Weiblich', value: 1},
+                ]}
+                value={newQuote?.gender}
+                onSelect={value => {
+                  setNewQuote({...newQuote, gender: value});
                 }}
-                value={newQuote?.gender.toString() || ''}></TextInput>
+              />
             </View>
             <View style={styles.form_modal}>
               <Text style={[styles.label, styles.label_color]}>Inhalt :</Text>
@@ -299,6 +312,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
     paddingHorizontal: 4,
     paddingVertical: 0,
+    borderRadius: 5,
   },
 });
 export default NewQuoteScreen;
