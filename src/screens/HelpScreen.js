@@ -52,7 +52,7 @@ function HelpScreen({navigation}) {
 
   const HelpSection2 = (
     <>
-      <Text style={styles.title}>Bevor es losgeht…</Text>
+      <Text style={[styles.title, styles.marginTop_0]}>Bevor es losgeht…</Text>
       <Text style={styles.text}>
         Bevor ihr euch in dieses aufregende Spiel zu lustigen Gesprächen und
         stärkeren Bindungen stürzt, möchten wir euch von Herzen für euer
@@ -125,7 +125,7 @@ function HelpScreen({navigation}) {
 
   const HelpSection5 = (
     <>
-      <Text style={styles.title}>Spielanleitung</Text>
+      <Text style={[styles.title, styles.marginTop_0]}>Spielanleitung</Text>
       <Text style={styles.text}>
         Die Spieler sind nach jeder Karte abwechselnd an der Reihe. Der Spieler,
         der das Spiel vorgeschlagen hat, darf die Kategorie aussuchen mit der
@@ -238,6 +238,9 @@ const styles = StyleSheet.create({
     lineHeight: 48,
     marginTop: 48,
     marginBottom: 16,
+  },
+  marginTop_0: {
+    marginTop: 0,
   },
   subtitle: {
     color: '#00303f',

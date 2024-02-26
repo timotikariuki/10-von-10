@@ -1,6 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {
-  Image,
   StyleSheet,
   View,
   Text,
@@ -34,6 +33,19 @@ function QuoteScreen({navigation, route}) {
     isRead: 0,
   });
 
+  const handleReset = category => {
+    resetAllUnreadByCategory({category}, () => {
+      Alert.alert('Erfolg', 'Erfolgreich zurückgesetzt! Genießen Sie es', [
+        {
+          text: 'Stornieren',
+          onPress: () => {
+            callSelectOne(targetCategory);
+          },
+        },
+      ]);
+    });
+  };
+
   const callSelectOne = category => {
     selectOneRandomly({category}, ({total, isRead, selItem}) => {
       setSelected(selected === 0 ? 1 : 0);
@@ -49,20 +61,7 @@ function QuoteScreen({navigation, route}) {
             {
               text: 'Zurücksetzen',
               onPress: () => {
-                resetAllUnreadByCategory({category}, () => {
-                  Alert.alert(
-                    'Erfolg',
-                    'Erfolgreich zurückgesetzt! Genießen Sie es',
-                    [
-                      {
-                        text: 'Stornieren',
-                        onPress: () => {
-                          callSelectOne(targetCategory);
-                        },
-                      },
-                    ],
-                  );
-                });
+                handleReset(category);
               },
             },
           ],

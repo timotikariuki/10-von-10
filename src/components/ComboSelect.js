@@ -16,7 +16,7 @@ const ComboSelect = ({options, value, onSelect, style}) => {
         onPress={() => setModalVisible(true)}
         style={styles.selectButton}>
         <Text style={styles.selectButtonText}>
-          {options[value] ? options[value]?.label : 'Select an option'}
+          {options[value] ? options[value]?.label : 'Wähle eine Option'}
         </Text>
       </TouchableOpacity>
       <Modal
@@ -26,18 +26,29 @@ const ComboSelect = ({options, value, onSelect, style}) => {
         onRequestClose={() => {
           setModalVisible(false);
         }}>
-        <View style={styles.modalView}>
-          {options.map(option => (
-            <TouchableOpacity
-              key={option.value}
-              style={styles.optionButton}
-              onPress={() => handleSelect(option)}>
-              <Text style={{color: assetsPaths.colors.orange, fontSize:18, fontWeight:'bold'}}>
-                {option.label}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+        <TouchableOpacity
+          style={styles.modalView}
+          onPress={() => {
+            setModalVisible(false);
+          }}>
+          <View style={styles.modalContent}>
+            {options.map(option => (
+              <TouchableOpacity
+                key={option.value}
+                style={styles.optionButton}
+                onPress={() => handleSelect(option)}>
+                <Text
+                  style={{
+                    color: assetsPaths.colors.orange,
+                    fontSize: 18,
+                    fontWeight: 'bold',
+                  }}>
+                  {option.label}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </TouchableOpacity>
       </Modal>
     </View>
   );
@@ -52,12 +63,19 @@ const styles = StyleSheet.create({
   },
   selectButtonText: {
     fontSize: 18,
+    color: 'black',
   },
   modalView: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  modalContent: {
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    alignItems: 'center',
+    width: '90%',
+    paddingVertical: 36,
+    paddingHorizental: 12,
   },
   optionButton: {
     padding: 10,

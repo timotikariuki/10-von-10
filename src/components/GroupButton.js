@@ -9,6 +9,7 @@ const GroupButton = ({
   size = 'sm',
   style: container_style,
   disabled = false,
+  secondary = false,
 }) => {
   return (
     <View
@@ -23,13 +24,14 @@ const GroupButton = ({
           styles.pressable,
           color === 'orange' && styles.bg_orange,
           color === 'transparent' && styles.bg_transparent,
-          disabled && styles.disabled,
+          disabled && styles.disabled_bg,
         ]}
         disabled={disabled}>
         <Text
           style={[
             styles.text,
             color === 'transparent' && styles.bg_transparent,
+            disabled && styles.disabled_color,
           ]}>
           {title}
         </Text>
@@ -58,8 +60,11 @@ const styles = StyleSheet.create({
   bg_orange: {
     backgroundColor: assetsPaths.colors.orange,
   },
-  disabled: {
-    backgroundColor: assetsPaths.colors.beige_cream,
+  disabled_bg: {
+    backgroundColor: assetsPaths.colors.orange_2,
+  },
+  disabled_color: {
+    color: assetsPaths.colors.white,
   },
   lg: {
     paddingHorizontal: 12,
@@ -68,7 +73,7 @@ const styles = StyleSheet.create({
   sm: {},
   bg_transparent: {
     backgroundColor: 'transparent',
-    color: assetsPaths.colors.beige_cream,
+    color: assetsPaths.colors.orange,
   },
 });
 

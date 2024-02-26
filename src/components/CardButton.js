@@ -52,6 +52,9 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     overflow: 'hidden',
     elevation: 5,
+    backgroundColor: assetsPaths.colors.orange,
+    borderWidth: 1,
+    borderColor: "#888",
   },
   background: {
     position: 'relative',
@@ -63,23 +66,23 @@ const styles = StyleSheet.create({
     width: '80%',
     height: '100%',
     resizeMode: 'contain',
-    opacity: 0.5
+    opacity: 0.5,
   },
   text_container: {
     position: 'absolute',
     width: '100%',
     height: '100%',
-    display: "flex",
-    justifyContent: "center",
-    alignItems:'center'
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
     color: '#00303f',
     fontSize: 24,
     fontWeight: 'bold',
     lineHeight: 36,
-    textAlign: "center",
-    paddingTop: 24
+    textAlign: 'center',
+    paddingTop: 24,
   },
 });
 

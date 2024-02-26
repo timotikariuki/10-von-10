@@ -165,9 +165,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
   },
   last_group_botton: {
-    flexBasis: '80%',
-    minWidth: 200,
-    maxWidth: 250,
+    flexBasis: '90%',
+    minWidth: 300,
   },
   paragraph: {
     paddingHorizontal: 24,

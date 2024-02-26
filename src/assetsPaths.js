@@ -27,7 +27,7 @@ const colors = {
   dark: '#1D1E25',
   white: '#fff',
   orange: '#ED8F12',
-  orange_2: '#FFB611',
+  orange_2: '#ED8F1255',
 };
 
 export default {images, colors};
