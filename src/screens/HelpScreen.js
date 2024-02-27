@@ -164,7 +164,6 @@ function HelpScreen({navigation}) {
           onPress={() => {
             navigation.navigate('menu');
           }}
-          style={styles.return_button}
           color="dark"
           content="<"
         />
@@ -207,13 +206,6 @@ const styles = StyleSheet.create({
   section1_logo: {
     height: 280,
     resizeMode: 'contain',
-  },
-  return_button: {
-    position: 'absolute',
-    top: 56,
-    left: 20,
-    zIndex: 99,
-    backgroundColor: '#fff7',
   },
   container: {
     flex: 1,

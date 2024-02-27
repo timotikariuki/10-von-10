@@ -114,21 +114,26 @@ function QuoteScreen({navigation, route}) {
           onPress={() => {
             navigation.navigate('menu');
           }}
-          style={styles.return_button}
+          color="dark"
           content="<"
         />
         <View style={styles.scroll_view}>
           <View style={styles.scroll_content}>
-            <Text style={styles.text}>{quoteItem?.content}</Text>
+            <View style={styles.question}>
+              <Text style={[styles.question_text, styles.black_color]}>
+                {quoteItem?.content}
+              </Text>
+            </View>
             <Text
               style={[
                 styles.description,
+                styles.black_color,
                 quoteStatus.total === quoteStatus.isRead && styles.disabled,
               ]}>
               {`${players[selected]?.name}'s Frage`}
             </Text>
 
-            <Text>
+            <Text style={styles.black_color}>
               {`(vollendet ${quoteStatus.isRead}/${quoteStatus.total})`}
             </Text>
           </View>
@@ -148,13 +153,6 @@ function QuoteScreen({navigation, route}) {
 }
 
 const styles = StyleSheet.create({
-  return_button: {
-    position: 'absolute',
-    top: 56,
-    left: 20,
-    zIndex: 99,
-    backgroundColor: '#fff7',
-  },
   container: {
     flex: 1,
   },
@@ -166,15 +164,20 @@ const styles = StyleSheet.create({
   scroll_content: {
     alignItems: 'center',
   },
-  text: {
-    color: '#00303f',
+  question: {
     paddingHorizontal: 24,
     width: '100%',
+    minHeight: 240,
+    display:"flex",
+    flexDirection:"column",
+    alignItems:"center",
+    justifyContent:"center"
+  },
+  question_text: {
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 48,
-    minHeight: 120,
   },
   description: {
     paddingHorizontal: 24,
@@ -183,6 +186,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 36,
     paddingTop: 18,
+  },
+  black_color: {
+    color: '#000',
   },
   button_group: {
     position: 'absolute',

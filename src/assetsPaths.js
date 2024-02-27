@@ -21,9 +21,7 @@ const images = {
 };
 
 const colors = {
-  bright_blue: '#257CFF',
-  beige_cream: '#f3cb85',
-  dark_beige: "#e0b96a",
+  bright_blue: '#2068D3',
   dark: '#1D1E25',
   white: '#fff',
   orange: '#ED8F12',

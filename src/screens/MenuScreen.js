@@ -121,6 +121,9 @@ const styles = StyleSheet.create({
   },
   help_button: {
     width: 210,
+    position: 'relative',
+    top: 0,
+    left: 0,
   },
   container: {
     flex: 1,

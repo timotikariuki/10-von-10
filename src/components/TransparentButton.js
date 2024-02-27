@@ -5,11 +5,11 @@ import assetsPaths from '../assetsPaths';
 const TransparentButton = ({
   onPress,
   color = 'light',
-  style: container_style,
+  style,
   content = 'Spielanleitung',
 }) => {
   return (
-    <View style={container_style}>
+    <View style={[color === 'dark' && styles.container_style, style]}>
       <TouchableOpacity
         onPress={onPress}
         style={[styles.pressable, color === 'dark' && styles.border_dark]}>
@@ -22,10 +22,16 @@ const TransparentButton = ({
 };
 
 const styles = StyleSheet.create({
+  container_style: {
+    position: 'absolute',
+    top: 56,
+    left: 20,
+    zIndex: 99,
+    backgroundColor: '#fffa',
+  },
   pressable: {
     borderRadius: 4,
     overflow: 'hidden',
-    backgroundColor: 'transparent',
     borderWidth: 1,
     borderColor: assetsPaths.colors.orange,
     minHeight: 48,
@@ -36,6 +42,7 @@ const styles = StyleSheet.create({
   },
   border_dark: {
     color: assetsPaths.colors.orange,
+    borderColor: assetsPaths.colors.orange,
   },
   text: {
     color: assetsPaths.colors.orange,

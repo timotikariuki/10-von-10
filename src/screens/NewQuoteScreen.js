@@ -76,7 +76,6 @@ function NewQuoteScreen({navigation}) {
         onPress={() => {
           navigation.navigate('menu');
         }}
-        style={styles.return_button}
         color="dark"
         content="<"
       />
@@ -92,6 +91,7 @@ function NewQuoteScreen({navigation}) {
               </Text>
               <ComboSelect
                 style={styles.control}
+                placeholder={'Wähle eine Kategorie'}
                 options={[
                   {label: 'Ernste Fragen', value: 0},
                   {label: 'Lustige Fragen', value: 1},
@@ -110,6 +110,7 @@ function NewQuoteScreen({navigation}) {
               </Text>
               <ComboSelect
                 style={styles.control}
+                placeholder={'Wählen Sie ein Geschlecht'}
                 options={[
                   {label: 'Männlich', value: 0},
                   {label: 'Weiblich', value: 1},
@@ -146,7 +147,7 @@ function NewQuoteScreen({navigation}) {
               />
               <GroupButton
                 style={styles.group_botton}
-                title="Speichern"
+                title="Hinzufügen"
                 onPress={handleSaveQuote}
                 disabled={
                   newQuote.content === '' ||
@@ -189,8 +190,10 @@ function NewQuoteScreen({navigation}) {
                 title="Stornieren"
                 onPress={handleCancelPlayers}
                 disabled={
-                  players[0]?.name === _players[0]?.name &&
-                  players[1]?.name === _players[1]?.name
+                  (players[0]?.name === _players[0]?.name &&
+                    players[1]?.name === _players[1]?.name) ||
+                  !_players[0]?.name ||
+                  !_players[1]?.name
                 }
                 color="orange"
               />
@@ -199,8 +202,10 @@ function NewQuoteScreen({navigation}) {
                 title="Speichern"
                 onPress={handleSavePlayers}
                 disabled={
-                  players[0]?.name === _players[0]?.name &&
-                  players[1]?.name === _players[1]?.name
+                  (players[0]?.name === _players[0]?.name &&
+                    players[1]?.name === _players[1]?.name) ||
+                  !_players[0]?.name ||
+                  !_players[1]?.name
                 }
                 color="orange"
               />
@@ -226,13 +231,6 @@ const styles = StyleSheet.create({
   section1_logo: {
     height: 60,
     resizeMode: 'contain',
-  },
-  return_button: {
-    position: 'absolute',
-    top: 56,
-    left: 20,
-    zIndex: 99,
-    backgroundColor: '#fff7',
   },
   container: {
     flex: 1,
@@ -295,7 +293,7 @@ const styles = StyleSheet.create({
     color: assetsPaths.colors.orange,
   },
   label: {
-    width: 100,
+    width: 90,
     lineHeight: 36,
     fontWeight: 'bold',
     textAlign: 'right',
@@ -309,7 +307,7 @@ const styles = StyleSheet.create({
     height: 48,
     lineHeight: 36,
     textAlign: 'center',
-    marginHorizontal: 24,
+    marginHorizontal: 12,
     paddingHorizontal: 4,
     paddingVertical: 0,
     borderRadius: 5,

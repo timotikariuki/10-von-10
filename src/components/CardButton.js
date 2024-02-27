@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     overflow: 'hidden',
     elevation: 5,
-    backgroundColor: assetsPaths.colors.orange,
     borderWidth: 1,
     borderColor: "#888",
   },

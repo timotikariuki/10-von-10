@@ -28,7 +28,7 @@ function OldQuoteScreen({navigation, route}) {
           onPress={() => {
             navigation.navigate('menu');
           }}
-          style={styles.return_button}
+          color="dark"
           content="<"
         />
         <View style={styles.scroll_view}>
@@ -50,13 +50,6 @@ function OldQuoteScreen({navigation, route}) {
 }
 
 const styles = StyleSheet.create({
-  return_button: {
-    position: 'absolute',
-    top: 56,
-    left: 20,
-    zIndex: 99,
-    backgroundColor: '#fff7',
-  },
   container: {
     flex: 1,
   },
@@ -69,23 +62,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    color: '#00303f',
+    color: '#000',
     paddingHorizontal: 48,
     width: '100%',
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 48,
-    minHeight: 120,
-  },
-  description: {
-    color: '#5d5f5f',
-    paddingHorizontal: 24,
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    lineHeight: 36,
-    paddingTop: 18,
+    minHeight: 240,
   },
   button_group: {
     position: 'absolute',

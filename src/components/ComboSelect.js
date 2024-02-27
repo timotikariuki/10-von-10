@@ -2,7 +2,13 @@ import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, Modal, StyleSheet} from 'react-native';
 import assetsPaths from '../assetsPaths';
 
-const ComboSelect = ({options, value, onSelect, style}) => {
+const ComboSelect = ({
+  options,
+  value,
+  onSelect,
+  style,
+  placeholder = 'Wähle eine Option',
+}) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleSelect = option => {
@@ -16,7 +22,7 @@ const ComboSelect = ({options, value, onSelect, style}) => {
         onPress={() => setModalVisible(true)}
         style={styles.selectButton}>
         <Text style={styles.selectButtonText}>
-          {options[value] ? options[value]?.label : 'Wähle eine Option'}
+          {options[value] ? options[value]?.label : placeholder}
         </Text>
       </TouchableOpacity>
       <Modal
@@ -60,6 +66,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
+    minHeight: 48,
   },
   selectButtonText: {
     fontSize: 18,

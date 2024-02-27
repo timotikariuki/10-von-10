@@ -9,7 +9,6 @@ const GroupButton = ({
   size = 'sm',
   style: container_style,
   disabled = false,
-  secondary = false,
 }) => {
   return (
     <View
@@ -17,6 +16,7 @@ const GroupButton = ({
         container_style,
         size === 'sm' && styles.sm,
         size === 'lg' && styles.lg,
+        disabled && styles.disabled_opacity,
       ]}>
       <TouchableOpacity
         onPress={onPress}
@@ -24,14 +24,12 @@ const GroupButton = ({
           styles.pressable,
           color === 'orange' && styles.bg_orange,
           color === 'transparent' && styles.bg_transparent,
-          disabled && styles.disabled_bg,
         ]}
         disabled={disabled}>
         <Text
           style={[
             styles.text,
             color === 'transparent' && styles.bg_transparent,
-            disabled && styles.disabled_color,
           ]}>
           {title}
         </Text>
@@ -60,11 +58,8 @@ const styles = StyleSheet.create({
   bg_orange: {
     backgroundColor: assetsPaths.colors.orange,
   },
-  disabled_bg: {
-    backgroundColor: assetsPaths.colors.orange_2,
-  },
-  disabled_color: {
-    color: assetsPaths.colors.white,
+  disabled_opacity: {
+    opacity: 0.5
   },
   lg: {
     paddingHorizontal: 12,
