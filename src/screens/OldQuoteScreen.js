@@ -41,7 +41,7 @@ function OldQuoteScreen({navigation, route}) {
       <View style={styles.button_group}>
         <GroupButton
           style={styles.group_botton}
-          title="Heim"
+          title="Menü"
           onPress={handleBack}
         />
       </View>

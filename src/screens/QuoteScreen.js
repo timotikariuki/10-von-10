@@ -57,7 +57,7 @@ function QuoteScreen({navigation, route}) {
           'Bekanntmachung',
           `Sie haben alle Fragen zu ${players[selected]?.name} beantwortet. Bitte alle Fragen zurücksetzen.`,
           [
-            {text: 'Heim', onPress: handleBack},
+            {text: 'Menü', onPress: handleBack},
             {
               text: 'Zurücksetzen',
               onPress: () => {

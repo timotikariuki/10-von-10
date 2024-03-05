@@ -6,7 +6,6 @@ import {
   ScrollView,
   Text,
   ImageBackground,
-  PanResponder,
 } from 'react-native';
 import GroupButton from '../components/GroupButton';
 import assetsPaths from '../assetsPaths';
@@ -26,19 +25,6 @@ function HelpScreen({navigation}) {
       setSelected(selected - 1);
     }
   };
-
-  const panResponder = PanResponder.create({
-    onStartShouldSetPanResponder: () => true,
-    onMoveShouldSetPanResponder: (event, gestureState) => {
-      // Set up conditions to check for a single-finger right gesture
-      return gestureState.dx > 10 && Math.abs(gestureState.dy) < 10;
-    },
-
-    onPanResponderRelease: (event, gestureState) => {
-      if (gestureState.dx < -40) handleNext();
-      else if (gestureState.dx > 40) handleBack();
-    },
-  });
 
   const HelpSection1 = (
     <>
@@ -156,7 +142,7 @@ function HelpScreen({navigation}) {
   );
 
   return (
-    <View style={styles.container} {...panResponder.panHandlers}>
+    <View style={styles.container} >
       <ImageBackground
         style={styles.container}
         source={assetsPaths.images.card_white}>
@@ -185,14 +171,14 @@ function HelpScreen({navigation}) {
       <View style={styles.button_group}>
         <GroupButton
           style={styles.group_botton}
-          title="<< ZURÜCK"
+          title="< ZURÜCK"
           onPress={handleBack}
           disabled={selected === 0}
           color="orange"
         />
         <GroupButton
           style={styles.group_botton}
-          title="NÄCHSTE >>"
+          title="WEITER >"
           onPress={handleNext}
           disabled={selected === 4}
           color="orange"
@@ -225,7 +211,6 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: 48,
     fontSize: 36,
-    fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 48,
     marginTop: 48,
@@ -248,7 +233,6 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: 48,
     fontSize: 18,
-    fontWeight: 'bold',
     lineHeight: 36,
     marginBottom: 16,
   },
@@ -257,20 +241,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 48,
     paddingBottom: 200,
     position: 'relative',
-    marginTop: 160,
+    marginTop: 120,
   },
   section3_title: {
     maxWidth: 360,
     color: '#00303f',
     fontSize: 24,
-    fontWeight: 'bold',
     lineHeight: 48,
   },
   section3_logo: {
     position: 'absolute',
     bottom: 0,
     right: 24,
-    height: 280,
+    height: 240,
     resizeMode: 'contain',
     opacity: 0.7,
   },

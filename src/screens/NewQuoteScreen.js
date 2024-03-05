@@ -43,11 +43,8 @@ function NewQuoteScreen({navigation}) {
   };
 
   const handleSaveQuote = () => {
-    if (Number.isNaN === parseInt(newQuote.category)) {
-      Alert.alert('Bekanntmachung', 'Neues Angebot erfolgreich gespeichert!');
-    } else
       addQuote(newQuote, () => {
-        Alert.alert('Erfolg', 'Neues Angebot erfolgreich gespeichert!', [
+        Alert.alert('Erfolg', 'Eigene Frage erfolgreich gespeichert', [
           {
             text: 'Ok',
             onPress: () => {
@@ -110,7 +107,7 @@ function NewQuoteScreen({navigation}) {
               </Text>
               <ComboSelect
                 style={styles.control}
-                placeholder={'Wählen Sie ein Geschlecht'}
+                placeholder={'Wähle das Geschlecht'}
                 options={[
                   {label: 'Männlich', value: 0},
                   {label: 'Weiblich', value: 1},
@@ -130,6 +127,9 @@ function NewQuoteScreen({navigation}) {
                 }}
                 value={newQuote?.content || ''}
                 placeholder="Hier eingeben"
+                autoCapitalize='none'
+                autoFocus={true}
+                maxLength={100}
               />
             </View>
 
@@ -171,6 +171,9 @@ function NewQuoteScreen({navigation}) {
                 onChangeText={text => {
                   set_Players([{id: _players[1].id, name: text}, _players[1]]);
                 }}
+                autoCapitalize='none'
+                autoFocus={true}
+                maxLength={30}
               />
             </View>
             <View style={styles.form_modal}>
@@ -181,6 +184,9 @@ function NewQuoteScreen({navigation}) {
                 onChangeText={text => {
                   set_Players([_players[0], {id: _players[1].id, name: text}]);
                 }}
+                autoCapitalize='none'
+                autoFocus={true}
+                maxLength={30}
               />
             </View>
 
@@ -229,6 +235,7 @@ const styles = StyleSheet.create({
     height: 120,
   },
   section1_logo: {
+    marginTop:12,
     height: 60,
     resizeMode: 'contain',
   },
@@ -240,6 +247,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 24
   },
   text: {
     color: '#00303f',
@@ -301,11 +309,10 @@ const styles = StyleSheet.create({
   control: {
     flex: 1,
     color: 'black',
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     borderWidth: 1,
     fontSize: 18,
     height: 48,
-    lineHeight: 36,
     textAlign: 'center',
     marginHorizontal: 12,
     paddingHorizontal: 4,

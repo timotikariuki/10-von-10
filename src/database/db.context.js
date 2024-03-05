@@ -137,7 +137,7 @@ const QuoteProvider = ({children}) => {
           _players[1].id,
         ],
         () => {
-          console.log({_players});
+          // console.log({_players});
           setPlayers(_players);
           cb();
         },

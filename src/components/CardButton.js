@@ -77,9 +77,9 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#00303f',
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 20,
     lineHeight: 36,
+    fontWeight:"bold",
     textAlign: 'center',
     paddingTop: 24,
   },
