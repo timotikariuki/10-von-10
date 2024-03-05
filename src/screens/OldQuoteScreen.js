@@ -23,7 +23,8 @@ function OldQuoteScreen({navigation, route}) {
             assetsPaths.images.card_gray,
             assetsPaths.images.card_pink,
           ][oldQuoteItem.category]
-        }>
+        }
+        fadeDuration={0}>
         <TransparentButton
           onPress={() => {
             navigation.navigate('menu');

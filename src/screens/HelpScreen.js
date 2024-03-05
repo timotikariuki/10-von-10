@@ -31,8 +31,9 @@ function HelpScreen({navigation}) {
       <Image
         source={assetsPaths.images.logo_black}
         style={styles.section1_logo}
+        fadeDuration={0}
       />
-      <Text style={styles.title}>Herzlich willkommen bei 10von10</Text>
+      <Text style={styles.title}>Herzlich willkommen bei 10 von 10</Text>
     </>
   );
 
@@ -71,6 +72,7 @@ function HelpScreen({navigation}) {
       <Image
         source={assetsPaths.images.tri_questions}
         style={styles.section3_logo}
+        fadeDuration={0}
       />
     </View>
   );
@@ -142,10 +144,11 @@ function HelpScreen({navigation}) {
   );
 
   return (
-    <View style={styles.container} >
+    <View style={styles.container}>
       <ImageBackground
         style={styles.container}
-        source={assetsPaths.images.card_white}>
+        source={assetsPaths.images.card_white}
+        fadeDuration={0}>
         <TransparentButton
           onPress={() => {
             navigation.navigate('menu');

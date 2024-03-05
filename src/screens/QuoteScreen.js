@@ -109,7 +109,8 @@ function QuoteScreen({navigation, route}) {
             assetsPaths.images.card_gray,
             assetsPaths.images.card_pink,
           ][targetCategory]
-        }>
+        }
+        fadeDuration={0}>
         <TransparentButton
           onPress={() => {
             navigation.navigate('menu');
@@ -168,10 +169,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     width: '100%',
     minHeight: 240,
-    display:"flex",
-    flexDirection:"column",
-    alignItems:"center",
-    justifyContent:"center"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   question_text: {
     fontSize: 24,

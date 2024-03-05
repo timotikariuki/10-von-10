@@ -17,10 +17,15 @@ const CardButton = ({onPress, backgroundImage, category, isLeft = 0}) => {
         isLeft === 0 ? styles.l_container : styles.r_container,
       ]}>
       <TouchableOpacity onPress={onPress} style={styles.pressable}>
-        <ImageBackground style={styles.background} source={backgroundImage}>
+        <ImageBackground
+          style={styles.background}
+          source={backgroundImage}
+          fadeDuration={0}>
           <Image
             style={styles.logo}
-            source={assetsPaths.images.category_logos[category]}></Image>
+            source={assetsPaths.images.category_logos[category]}
+            fadeDuration={0}
+          />
           <View style={styles.text_container}>
             <Text style={styles.text}>
               {
@@ -53,7 +58,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     elevation: 5,
     borderWidth: 1,
-    borderColor: "#888",
+    borderColor: '#888',
   },
   background: {
     position: 'relative',
@@ -79,7 +84,7 @@ const styles = StyleSheet.create({
     color: '#00303f',
     fontSize: 20,
     lineHeight: 36,
-    fontWeight:"bold",
+    fontWeight: 'bold',
     textAlign: 'center',
     paddingTop: 24,
   },

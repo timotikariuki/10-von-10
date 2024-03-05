@@ -43,16 +43,16 @@ function NewQuoteScreen({navigation}) {
   };
 
   const handleSaveQuote = () => {
-      addQuote(newQuote, () => {
-        Alert.alert('Erfolg', 'Eigene Frage erfolgreich gespeichert', [
-          {
-            text: 'Ok',
-            onPress: () => {
-              setNewQuote({content: '', gender: -1, category: -1});
-            },
+    addQuote(newQuote, () => {
+      Alert.alert('Erfolg', 'Eigene Frage erfolgreich gespeichert', [
+        {
+          text: 'Ok',
+          onPress: () => {
+            setNewQuote({content: '', gender: -1, category: -1});
           },
-        ]);
-      });
+        },
+      ]);
+    });
   };
 
   const handleCancelQuote = () => {
@@ -63,10 +63,12 @@ function NewQuoteScreen({navigation}) {
     <View style={styles.container}>
       <ImageBackground
         style={styles.background_container}
-        source={assetsPaths.images.background_1}>
+        source={assetsPaths.images.background_1}
+        fadeDuration={0}>
         <Image
           source={assetsPaths.images.logo_black}
           style={styles.section1_logo}
+          fadeDuration={0}
         />
       </ImageBackground>
       <TransparentButton
@@ -127,7 +129,7 @@ function NewQuoteScreen({navigation}) {
                 }}
                 value={newQuote?.content || ''}
                 placeholder="Hier eingeben"
-                autoCapitalize='none'
+                autoCapitalize="none"
                 autoFocus={true}
                 maxLength={100}
               />
@@ -171,7 +173,7 @@ function NewQuoteScreen({navigation}) {
                 onChangeText={text => {
                   set_Players([{id: _players[1].id, name: text}, _players[1]]);
                 }}
-                autoCapitalize='none'
+                autoCapitalize="none"
                 autoFocus={true}
                 maxLength={30}
               />
@@ -184,7 +186,7 @@ function NewQuoteScreen({navigation}) {
                 onChangeText={text => {
                   set_Players([_players[0], {id: _players[1].id, name: text}]);
                 }}
-                autoCapitalize='none'
+                autoCapitalize="none"
                 autoFocus={true}
                 maxLength={30}
               />
@@ -235,7 +237,7 @@ const styles = StyleSheet.create({
     height: 120,
   },
   section1_logo: {
-    marginTop:12,
+    marginTop: 12,
     height: 60,
     resizeMode: 'contain',
   },
@@ -247,7 +249,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 24
+    marginBottom: 24,
   },
   text: {
     color: '#00303f',

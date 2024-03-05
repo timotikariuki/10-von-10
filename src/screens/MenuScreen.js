@@ -35,9 +35,14 @@ function MenuScreen({navigation}) {
       />
       <ImageBackground
         style={styles.background_container}
-        source={assetsPaths.images.background_1}>
+        source={assetsPaths.images.background_1}
+        fadeDuration={0}>
         <View style={styles.logo_ring}>
-          <Image style={styles.logo} source={assetsPaths.images.logo_black} />
+          <Image
+            style={styles.logo}
+            source={assetsPaths.images.logo_black}
+            fadeDuration={0}
+          />
         </View>
         <TransparentButton onPress={handleHelp} style={styles.help_button} />
       </ImageBackground>
