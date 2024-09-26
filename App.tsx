@@ -3,10 +3,14 @@
  * https://github.com/facebook/react-native
  *
  * @format
- * @flow strict-local
  */
 
 import React from 'react';
+import type {PropsWithChildren} from 'react';
+import {
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
+
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -20,7 +24,7 @@ import {QuoteProvider} from './src/database/db.context';
 
 const Stack = createNativeStackNavigator();
 
-const App = () => {
+function App(): React.JSX.Element {
 
   return (
     <QuoteProvider>
@@ -61,6 +65,6 @@ const App = () => {
       </NavigationContainer>
     </QuoteProvider>
   );
-};
+}
 
 export default App;
